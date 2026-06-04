@@ -9,145 +9,63 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
-:root{
-  --bg:        #FFFFFF;
-  --sidebar-bg:#FFFFFF;
-  --grey-fill: #F0F0F0;
-  --grey-mid:  #E5E5E5;
-  --label:     #1A1A1A;
-  --text:      #3A3A3A;
-  --meta:      #888888;
-  --border:    #E5E5E5;
-  --sidebar-w: 300px;
-  --tr:        160ms ease;
-}
-[data-theme="dark"]{
-  --bg:        #0D0D0D;
-  --sidebar-bg:#0D0D0D;
-  --grey-fill: #1E1E1E;
-  --grey-mid:  #282828;
-  --label:     #EFEFEF;
-  --text:      #BEBEBE;
-  --meta:      #606060;
-  --border:    #222222;
-}
-
+:root{--bg:#FFFFFF;--sidebar-bg:#FFFFFF;--grey-fill:#F0F0F0;--grey-mid:#E5E5E5;--label:#1A1A1A;--text:#3A3A3A;--meta:#888888;--border:#E5E5E5;--sidebar-w:300px;--tr:160ms ease}
+[data-theme="dark"]{--bg:#0D0D0D;--sidebar-bg:#0D0D0D;--grey-fill:#1E1E1E;--grey-mid:#282828;--label:#EFEFEF;--text:#BEBEBE;--meta:#606060;--border:#222222}
 html{cursor:none;scroll-behavior:smooth}
 body{font-family:'Open Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;transition:background var(--tr),color var(--tr)}
-
-/* ── CURSOR ── */
 .cur-dot{position:fixed;top:0;left:0;pointer-events:none;z-index:99999;border-radius:50%;will-change:transform;width:5px;height:5px;background:var(--label);margin:-2.5px 0 0 -2.5px;transition:opacity .15s,background .2s}
 .cur-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:99998;border-radius:50%;will-change:transform;width:26px;height:26px;border:1px solid #AAAAAA;margin:-13px 0 0 -13px;transition:width .18s ease,height .18s ease,margin .18s ease,opacity .18s,border-color .18s}
 .cur-blob{position:fixed;top:0;left:0;pointer-events:none;z-index:99997;border-radius:50%;will-change:transform;width:0;height:0;background:rgba(0,0,0,0);margin:0;transition:width .18s ease,height .18s ease,margin .18s ease,background .18s ease}
-/* image hover — ring grows */
 body.c-img .cur-ring{width:50px;height:50px;margin:-25px 0 0 -25px;border-color:#999999}
-/* link hover — ring+dot gone, grey blob */
 body.c-lnk .cur-ring{opacity:0}
-/* dot always visible */
 body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rgba(0,0,0,0.06)}
 [data-theme="dark"] body.c-lnk .cur-blob{background:rgba(255,255,255,0.07)}
 @media(pointer:coarse){.cur-dot,.cur-ring,.cur-blob{display:none}html{cursor:auto}*{cursor:auto!important}}
-
-/* ── LAYOUT ── */
 .layout{display:flex;min-height:100vh}
-
-/* ── SIDEBAR ── */
-.sidebar{
-  width:var(--sidebar-w);flex-shrink:0;
-  background:var(--sidebar-bg);
-  border-right:1px solid var(--border);
-  position:fixed;top:0;left:0;bottom:0;
-  display:flex;flex-direction:column;
-  padding:0;
-  overflow:hidden;z-index:100;
-  transition:background var(--tr),border-color var(--tr);
-}
-.sb-header{height:44px;display:flex;align-items:center;border-bottom:1px solid var(--border);margin:0 -12px;padding:0 12px;margin-bottom:12px;flex-shrink:0}.sb-scroll{flex:1;overflow-y:auto;padding:0 12px;padding-bottom:8px;min-height:0;}
+.sidebar{width:var(--sidebar-w);flex-shrink:0;background:var(--sidebar-bg);border-right:1px solid var(--border);position:fixed;top:0;left:0;bottom:0;display:flex;flex-direction:column;padding:0;overflow:hidden;z-index:100;transition:background var(--tr),border-color var(--tr)}
+.sb-header{height:44px;display:flex;align-items:center;border-bottom:1px solid var(--border);margin:0 -12px;padding:0 12px;margin-bottom:12px;flex-shrink:0}
+.sb-scroll{flex:1;overflow-y:auto;padding:0 12px;padding-bottom:8px;min-height:0}
 .sb-name{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--label);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sb-bio{font-family:'Open Sans',sans-serif;font-size:11px;color:var(--meta);line-height:1.65;margin-bottom:22px}
-
-/* nav items */
-.nav-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:6px;cursor:none;margin-bottom:6px;transition:background var(--tr),transform var(--tr),box-shadow var(--tr);border:1px solid var(--border);text-decoration:none;background:transparent;height:64px;}
-.nav-item.active{background:var(--grey-fill);border-color:transparent}.nav-item:hover{transform:scale(1.015);box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:6px;cursor:none;margin-bottom:6px;transition:background var(--tr),transform var(--tr),box-shadow var(--tr);border:1px solid var(--border);text-decoration:none;background:transparent;height:64px}
+.nav-item.active{background:var(--grey-fill);border-color:transparent}
+.nav-item:hover{transform:scale(1.015);box-shadow:0 1px 4px rgba(0,0,0,0.04)}
 .nav-thumb{width:44px;height:44px;border-radius:4px;flex-shrink:0;background:var(--grey-fill);border:none;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--meta);font-weight:600;transition:background var(--tr);overflow:hidden}
 .nav-item.active .nav-thumb,.nav-item:hover .nav-thumb{background:var(--grey-mid)}
 .nav-label{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;color:var(--label);display:block}
 .nav-sub{font-family:'Open Sans',sans-serif;font-size:11px;color:var(--meta);display:block;margin-top:2px}
-
 .sb-divider{height:16px;background:transparent;margin:8px 0;border:none}
 .cs-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--meta);margin-bottom:7px;padding:0 8px}
-
-.cs-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:6px;cursor:none;margin-bottom:6px;transition:background var(--tr),transform var(--tr),box-shadow var(--tr);border:1px solid var(--border);text-decoration:none;background:transparent;height:64px;}
-.cs-item.active{background:var(--grey-fill);border-color:transparent}.cs-item:hover{transform:scale(1.015);box-shadow:0 1px 4px rgba(0,0,0,0.04)}
+.cs-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:6px;cursor:none;margin-bottom:6px;transition:background var(--tr),transform var(--tr),box-shadow var(--tr);border:1px solid var(--border);text-decoration:none;background:transparent;height:64px}
+.cs-item.active{background:var(--grey-fill);border-color:transparent}
+.cs-item:hover{transform:scale(1.015);box-shadow:0 1px 4px rgba(0,0,0,0.04)}
 .cs-thumb{width:44px;height:44px;border-radius:4px;flex-shrink:0;background:var(--grey-fill);border:none;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--meta);font-weight:600;transition:background var(--tr);overflow:hidden}
 .cs-item.active .cs-thumb,.cs-item:hover .cs-thumb{background:var(--grey-mid)}
 .cs-name{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.03em;color:var(--label);display:block}
 .cs-sub{font-family:'Open Sans',sans-serif;font-size:11px;color:var(--meta);display:block;margin-top:2px}
-
 .sb-bottom{flex-shrink:0;height:44px;display:flex;align-items:center;padding:0 12px;border-top:1px solid var(--border);background:var(--sidebar-bg);transition:background var(--tr),border-color var(--tr)}
-.sb-line{display:none}
 .theme-tog{display:flex;align-items:center;cursor:none;padding:0;background:transparent;border:none;height:32px;width:100%;position:relative;justify-content:space-between;gap:0}
-.theme-tog-btn{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;z-index:2;transition:color .4s ease, transform .35s cubic-bezier(0.34,1.56,0.64,1);color:var(--meta);cursor:none;flex-shrink:0;position:relative}
+.theme-tog-btn{width:28px;height:28px;display:flex;align-items:center;justify-content:center;border-radius:6px;z-index:2;transition:color .4s ease,transform .35s cubic-bezier(0.34,1.56,0.64,1);color:var(--meta);cursor:none;flex-shrink:0;position:relative}
 .theme-tog-btn.ton{color:var(--label)}
 .theme-tog-track{flex:1;height:32px;position:relative;overflow:hidden}
-/* stars in track */
-.tog-dot{
-  position:fixed;
-  pointer-events:none;
-  z-index:99996;
-  width:4px;
-  height:4px;
-  border-radius:50%;
-  background:var(--label);
-  transform:translate(-50%,-50%);
-  opacity:0;
-}
-.tog-glow{animation:tog-glow 0.7s ease forwards}
-@keyframes dot-fade{
-  0%{opacity:0} 20%{opacity:1} 80%{opacity:1} 100%{opacity:0}
-}
-@keyframes tog-glow{
-  0%   {transform:scale(1)}
-  20%  {transform:scale(1.08)}
-  45%  {transform:scale(1.22)}
-  60%  {transform:scale(1.26)}
-  72%  {transform:scale(1.20)}
-  82%  {transform:scale(1.12)}
-  90%  {transform:scale(1.05)}
-  96%  {transform:scale(1.02)}
-  100% {transform:scale(1)}
-}
+.tog-dot{position:fixed;pointer-events:none;z-index:99996;width:4px;height:4px;border-radius:50%;background:var(--label);transform:translate(-50%,-50%);opacity:0}
+@keyframes dot-fade{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0}}
+@keyframes tog-glow{0%{transform:scale(1)}20%{transform:scale(1.08)}45%{transform:scale(1.22)}60%{transform:scale(1.26)}72%{transform:scale(1.20)}82%{transform:scale(1.12)}90%{transform:scale(1.05)}96%{transform:scale(1.02)}100%{transform:scale(1)}}
 .tog-glow{animation:tog-glow 0.5s cubic-bezier(0.25,0.1,0.25,1) forwards}
 .theme-tog .ton{color:var(--label);font-weight:600}
-.theme-tog .tsl{color:var(--border)}
-
-/* ── MAIN ── */
 .main{margin-left:var(--sidebar-w);flex:1;min-height:100vh;background:var(--bg);transition:background var(--tr)}
-
-/* ── VIEWS ── */
 .view{display:none;opacity:0;min-height:100vh;padding-bottom:44px}
 .view.active{display:block;animation:fV .16s ease forwards}
 @keyframes fV{from{opacity:0}to{opacity:1}}
-
-/* ── SECTION HEADER ── */
 .sec-hdr{padding:0 12px;position:relative;height:44px;display:flex;align-items:center;border-bottom:1px solid var(--border)}
 .sec-ttl{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--label);margin-bottom:0;text-align:left}
-.sec-rule{display:none}
-
-/* dot grid decoration */
 .dg{position:absolute;pointer-events:none;background-image:radial-gradient(circle,var(--grey-mid) 1.2px,transparent 1.2px);background-size:18px 18px;opacity:.6;border-radius:2px}
-
-/* ── WORK GRID ── */
 .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .proj-card{border:1px solid var(--border);border-radius:4px;cursor:none;transition:background var(--tr);overflow:hidden;background:var(--bg)}
-
 .proj-card:hover{background:var(--grey-fill)}
-
 .card-img-wrap{width:100%;aspect-ratio:16/9;background:var(--grey-fill);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;transition:background var(--tr);border-radius:2px}
 .proj-card:hover .card-img-wrap{background:var(--grey-mid)}
 .card-img-lbl{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--meta);opacity:.4;border:1px dashed var(--border);padding:5px 10px;border-radius:2px}
-
 .card-info{padding:12px 20px 16px;border-top:1px solid var(--border)}
 .card-row1{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1px}
 .card-nm{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--label)}
@@ -156,33 +74,55 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .proj-card:hover .card-arr{opacity:1;transform:translate(2px,-2px)}
 .card-type{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--meta);margin-bottom:6px}
 .card-desc{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.65}
-
-/* ── FOOTER ── */
 .vfooter{padding:0 12px;height:44px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:fixed;bottom:0;left:var(--sidebar-w);right:0;background:var(--bg);z-index:50;transition:background var(--tr),border-color var(--tr)}
 .flinks{display:flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:600;text-transform:uppercase;letter-spacing:.07em}
 .flinks a{color:var(--label);text-decoration:none;cursor:none;transition:color var(--tr)}
 .flinks a:hover{color:var(--meta)}
 .fsep{color:var(--border)}
 .fcopy{font-family:'IBM Plex Mono',monospace;font-size:8px;color:var(--meta)}
-
-/* ── ABOUT ── */
 .about-wrap{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 55px)}
-.about-left{border-right:1px solid var(--border);padding:28px 28px 28px 36px}
-.about-photo{width:100%;aspect-ratio:4/5;background:var(--grey-fill);border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px dashed var(--border)}
-.about-photo-lbl{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--meta);opacity:.35}
+.about-left{padding:12px}
+.about-photo-wrap{margin-bottom:12px}
+.about-photo{width:100%;height:auto;aspect-ratio:5/4;background:var(--grey-fill);border-radius:3px;display:flex;align-items:center;justify-content:center;border:1px dashed var(--border);position:relative;overflow:hidden}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity .5s ease}
+.slide.active{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;border-radius:3px;transition:transform .4s ease}
+.about-photo:hover .slide.active img{transform:scale(1.05)}
+.photo-caption{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center;padding-bottom:32px;font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:400;color:#ffffff;letter-spacing:.04em;text-align:center;opacity:0;transition:opacity .4s ease;border-radius:3px;z-index:3}
+.photo-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);transition:background .4s ease;border-radius:3px;pointer-events:none}
+.photo-gradient{position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,rgba(0,0,0,0.6) 0%,transparent 100%);opacity:1;transition:opacity .4s ease;border-radius:0 0 3px 3px;pointer-events:none}
+.about-photo:hover .photo-overlay{background:rgba(0,0,0,0.2)}
+.about-photo:hover .photo-gradient{opacity:1}
+.about-photo:hover .photo-caption{opacity:1}
+.slide-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:5;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);color:#fff;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:none;opacity:0;transition:opacity .3s ease,background .2s ease;font-family:'IBM Plex Mono',monospace;font-size:12px;backdrop-filter:blur(4px)}
+.slide-arrow:hover{background:rgba(255,255,255,0.28)}
+.slide-arrow.left{left:10px}
+.slide-arrow.right{right:10px}
+.about-photo:hover .slide-arrow{opacity:1}
+.pdot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,0.45);cursor:none;transition:background .2s ease,transform .2s ease}
+.pdot.active{background:#fff;transform:scale(1.2)}
 .about-dots{display:flex;gap:5px;justify-content:center;margin-bottom:20px}
 .adot{width:4px;height:4px;border-radius:50%;background:var(--border);cursor:none}
 .adot.on{background:var(--label)}
 .about-greet{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--label);line-height:1.55;margin-bottom:10px}
 .about-greet .at{font-weight:400;color:var(--meta)}
 .about-bio{font-family:'Open Sans',sans-serif;font-size:12.5px;color:var(--text);line-height:1.8}
+.about-right{padding:12px;position:relative;overflow-y:auto;background:transparent}
+.ab-sec{margin-bottom:12px;background:var(--bg);border-radius:6px;padding:16px;border:1px solid var(--border)}
+.ab-lbl{font-family:'IBM Plex Mono',monospace;font-size:7.5px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--meta);margin-bottom:16px;padding-bottom:7px;border-bottom:1px solid var(--border)}
+.exp-item{margin-bottom:20px}
+.exp-date{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--meta);margin-bottom:4px;letter-spacing:.04em}
+.exp-role{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--label);line-height:1.5;margin-bottom:8px}
+.exp-bullets{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.8;margin-top:8px;padding-left:0;list-style:none}
+.exp-bullets li{display:flex;gap:8px;margin-bottom:6px}
+.exp-bullets li::before{content:'↳';color:var(--meta);flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:1px}
 
-.about-right{padding:28px 36px 28px 28px;position:relative;overflow-y:auto}
-.ab-sec{margin-bottom:24px}
-.ab-lbl{font-family:'IBM Plex Mono',monospace;font-size:7.5px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--meta);margin-bottom:9px;padding-bottom:7px;border-bottom:1px solid var(--border)}
-.exp-item{margin-bottom:10px}
-.exp-date{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--meta);margin-bottom:2px}
-.exp-role{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.5}
+/* dropdown for collapsed experience */
+.exp-toggle{display:flex;align-items:center;gap:8px;cursor:none;background:none;border:none;padding:0;width:100%}
+.exp-toggle-arrow{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--meta);transition:transform .2s ease;display:inline-block}
+.exp-toggle.open .exp-toggle-arrow{transform:rotate(90deg)}
+.exp-collapsed{display:none;margin-top:8px}
+.exp-collapsed.open{display:block}
 .exp-arr{color:var(--meta)}
 .sk-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}
 .sk-item{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.85;display:flex;align-items:baseline;gap:5px}
@@ -190,8 +130,6 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .ct-item{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.85;display:flex;align-items:baseline;gap:5px}
 .ct-item a{color:var(--text);text-decoration:none;cursor:none}
 .ct-item a:hover{color:var(--label)}
-
-/* ── RECS ── */
 .recs-wrap{padding:26px 36px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .rec-card{border:1px solid var(--border);border-radius:3px;padding:20px;transition:background var(--tr)}
 .rec-card:hover{background:var(--grey-fill)}
@@ -200,8 +138,6 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .rec-bot{border-top:1px solid var(--border);padding-top:10px}
 .rec-nm{font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--label);display:block}
 .rec-rl{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--meta);margin-top:2px}
-
-/* ── CASE STUDY ── */
 .cs-wrap{display:grid;grid-template-columns:160px 1fr;min-height:calc(100vh - 55px)}
 .cs-minnav{padding:26px 0 26px 36px;position:sticky;top:0;height:100vh;overflow-y:auto;border-right:1px solid var(--border)}
 .cs-back{display:block;font-family:'IBM Plex Mono',monospace;font-size:8px;font-weight:500;text-transform:uppercase;letter-spacing:.08em;color:var(--meta);cursor:none;transition:color var(--tr);text-decoration:none;margin-bottom:18px}
@@ -209,53 +145,41 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .cs-proj-mini{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:lowercase;color:var(--label);margin-bottom:16px;display:block}
 .cs-anch{display:block;font-family:'Open Sans',sans-serif;font-size:12px;color:var(--meta);padding:3px 0;cursor:none;transition:color var(--tr);text-decoration:none}
 .cs-anch:hover,.cs-anch.on{color:var(--label)}
-
 .cs-content{padding:26px 36px 36px 28px;overflow-y:auto}
 .cs-hero{width:100%;aspect-ratio:16/6;background:var(--grey-fill);border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:28px;border:1px dashed var(--border);position:relative;overflow:hidden}
 .cs-hero-lbl{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--meta);opacity:.35}
-
 .cs-title{font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:600;text-transform:lowercase;color:var(--label);line-height:1.05;margin-bottom:5px}
 .cs-tagline{font-family:'Open Sans',sans-serif;font-size:14px;color:var(--text);line-height:1.7;margin-bottom:20px;max-width:540px}
-
 .cs-meta{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);border-radius:3px;margin-bottom:28px;overflow:hidden}
 .cs-mc{padding:12px 14px;border-right:1px solid var(--border)}
 .cs-mc:last-child{border-right:none}
 .cs-mk{font-family:'IBM Plex Mono',monospace;font-size:7px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--meta);margin-bottom:4px}
 .cs-mv{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.45}
-
 .cs-sec{margin-bottom:36px}
 .cs-sec-id{scroll-margin-top:18px}
 .cs-sec-ttl{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:lowercase;color:var(--label);margin-bottom:12px;padding-bottom:9px;border-bottom:1px solid var(--border)}
 .cs-body{font-family:'Open Sans',sans-serif;font-size:12.5px;color:var(--text);line-height:1.85;max-width:580px}
 .cs-body+.cs-body{margin-top:10px}
-
 .cs-stats{display:grid;grid-template-columns:repeat(6,1fr);border:1px solid var(--border);border-radius:3px;overflow:hidden;margin-top:12px}
 .cs-stat{padding:12px 8px;border-right:1px solid var(--border);text-align:center}
 .cs-stat:last-child{border-right:none}
 .cs-sv{font-family:'IBM Plex Mono',monospace;font-size:15px;font-weight:600;color:var(--label);display:block}
 .cs-sk{font-family:'IBM Plex Mono',monospace;font-size:7px;font-weight:500;color:var(--meta);text-transform:uppercase;letter-spacing:.06em;margin-top:3px;display:block}
-
 .cs-ch{margin-top:12px}
 .cs-ch-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:11px 0;border-bottom:1px solid var(--border)}
 .cs-ch-pair:last-child{border-bottom:none}
 .cs-prob,.cs-sol{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.65}
 .cs-prob::before{content:'Problem';font-family:'IBM Plex Mono',monospace;font-size:7px;text-transform:uppercase;letter-spacing:.08em;color:var(--meta);display:block;margin-bottom:4px}
 .cs-sol::before{content:'Solution';font-family:'IBM Plex Mono',monospace;font-size:7px;text-transform:uppercase;letter-spacing:.08em;color:var(--label);display:block;margin-bottom:4px}
-
 .cs-impact{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
 .cs-ic{border:1px solid var(--border);border-radius:3px;padding:16px;text-align:center}
 .cs-in{font-family:'IBM Plex Mono',monospace;font-size:30px;font-weight:600;color:var(--label);display:block;line-height:1;margin-bottom:6px}
 .cs-il{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--meta);line-height:1.4}
-
 .ph{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--meta);opacity:.45;border:1px dashed var(--border);padding:7px 10px;border-radius:2px;display:inline-block;margin-top:8px}
-
-/* ── MOBILE BAR ── */
 .mob-bar{display:none;position:fixed;top:0;left:0;right:0;height:52px;background:var(--bg);border-bottom:1px solid var(--border);z-index:200;align-items:center;justify-content:space-between;padding:0 16px;transition:background var(--tr),border-color var(--tr)}
 .mob-nm{font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--label)}
 .hmbg{width:24px;height:24px;display:flex;flex-direction:column;justify-content:center;gap:5px;cursor:pointer;background:none;border:none;padding:0}
 .hmbg span{display:block;height:1.5px;background:var(--label);border-radius:1px}
-
-/* ── OVERLAY ── */
 .mob-ov{display:none;position:fixed;inset:0;background:var(--bg);z-index:300;flex-direction:column;padding:16px;overflow-y:auto;opacity:0;transform:translateX(-14px);transition:opacity .22s ease,transform .22s ease}
 .mob-ov.open{opacity:1;transform:translateX(0)}
 .ov-hdr{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;position:relative;z-index:1}
@@ -268,44 +192,14 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .mob-slbl{font-family:'IBM Plex Mono',monospace;font-size:7.5px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--meta);padding:13px 8px 7px;position:relative;z-index:1}
 .mob-tr{margin-top:auto;padding:20px 8px 0;display:flex;gap:7px;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--meta);cursor:pointer;position:relative;z-index:1}
 .mob-tr .ton{color:var(--label);font-weight:600}
-
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  .sidebar{display:none}.mob-bar{display:flex}.mob-ov{display:flex}
-  .main{margin-left:0;padding-top:52px}
-  .sec-hdr{padding:16px 18px 0}
-  .recs-wrap,.cs-content{padding:16px 18px}
-  .cs-wrap{grid-template-columns:1fr}.cs-minnav{display:none}
-  .vfooter{padding:12px 18px 18px}
-}
-@media(max-width:1024px) and (min-width:640px){
-  .proj-grid{grid-template-columns:1fr 1fr}
-  .about-wrap{grid-template-columns:1fr}
-  .about-left{border-right:none;border-bottom:1px solid var(--border);padding:18px}
-  .about-right{padding:18px}
-}
-@media(max-width:639px){
-  .proj-grid{grid-template-columns:1fr}
-  .proj-card:nth-child(even),.proj-card:nth-child(odd){border-right:none}
-  .about-wrap{grid-template-columns:1fr}
-  .about-left{border-right:none;border-bottom:1px solid var(--border);padding:16px}
-  .about-right{padding:16px}
-  .recs-wrap{grid-template-columns:1fr}
-  .cs-stats{grid-template-columns:repeat(3,1fr)}
-  .cs-ch-pair,.sk-grid{grid-template-columns:1fr}
-  .cs-impact{grid-template-columns:1fr}
-  .cs-meta{grid-template-columns:1fr 1fr}
-  .cs-mc:nth-child(2){border-right:none}
-  .cs-mc:nth-child(3){border-top:1px solid var(--border)}
-  .cs-mc:nth-child(4){border-top:1px solid var(--border)}
-  .cs-title{font-size:18px}
-}
+@media(max-width:1024px){.sidebar{display:none}.mob-bar{display:flex}.mob-ov{display:flex}.main{margin-left:0;padding-top:52px}.sec-hdr{padding:16px 18px 0}.recs-wrap,.cs-content{padding:16px 18px}.cs-wrap{grid-template-columns:1fr}.cs-minnav{display:none}.vfooter{padding:12px 18px 18px}}
+@media(max-width:1024px) and (min-width:640px){.proj-grid{grid-template-columns:1fr 1fr}.about-wrap{grid-template-columns:1fr}.about-left{border-right:none;border-bottom:1px solid var(--border);padding:18px}.about-right{padding:18px}}
+@media(max-width:639px){.proj-grid{grid-template-columns:1fr}.proj-card:nth-child(even),.proj-card:nth-child(odd){border-right:none}.about-wrap{grid-template-columns:1fr}.about-left{border-right:none;border-bottom:1px solid var(--border);padding:16px}.about-right{padding:16px}.recs-wrap{grid-template-columns:1fr}.cs-stats{grid-template-columns:repeat(3,1fr)}.cs-ch-pair,.sk-grid{grid-template-columns:1fr}.cs-impact{grid-template-columns:1fr}.cs-meta{grid-template-columns:1fr 1fr}.cs-mc:nth-child(2){border-right:none}.cs-mc:nth-child(3){border-top:1px solid var(--border)}.cs-mc:nth-child(4){border-top:1px solid var(--border)}.cs-title{font-size:18px}}
 @media(max-width:768px){.dg{display:none}}
 </style>
 </head>
 <body>
-
-<div class="cur-dot"  id="cDot"></div>
+<div class="cur-dot" id="cDot"></div>
 <div class="cur-ring" id="cRing"></div>
 <div class="cur-blob" id="cBlob"></div>
 
@@ -340,7 +234,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 <aside class="sidebar">
   <div class="sb-scroll">
   <div class="sb-header"><div class="sb-name">Roksolana Morozova</div></div>
-  <p class="sb-bio">Product Designer with a Big 4 audit background, turning complex B2B logic into intuitive AI-powered SaaS products and scalable design systems.</p>
+  <p class="sb-bio">Product Designer with a Big 4 audit background, turning complex B2B workflows into intuitive AI-powered SaaS products and scalable design systems.</p>
   <div>
     <div class="nav-item active" id="nv-work" onclick="show('work')"><div class="nav-thumb">WK</div><div><span class="nav-label">Work</span><span class="nav-sub">A selection of recent work</span></div></div>
     <div class="nav-item" id="nv-about" onclick="show('about')"><div class="nav-thumb">AB</div><div><span class="nav-label">About</span><span class="nav-sub">Background & skills</span></div></div>
@@ -353,16 +247,12 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
   <div class="cs-item" id="nv-nextrep" onclick="showCs('nextrep')"><div class="cs-thumb">NR</div><div><span class="cs-name">NextRep</span><span class="cs-sub">AI SaaS · Web App</span></div></div>
   <div class="cs-item" id="nv-harmoni" onclick="showCs('harmoni')"><div class="cs-thumb">HA</div><div><span class="cs-name">Harmoni</span><span class="cs-sub">Recruitment · B2B</span></div></div>
   <div class="cs-item" id="nv-designsystem" onclick="showCs('designsystem')"><div class="cs-thumb">DS</div><div><span class="cs-name">Design System</span><span class="cs-sub">Enterprise · B2B</span></div></div>
-  </div><!-- end sb-scroll -->
+  </div>
   <div class="sb-bottom">
     <div class="theme-tog" id="themeTog">
-    <div class="theme-tog-btn ton" id="tLight" onclick="setTheme(false)" title="Light">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-    </div>
+    <div class="theme-tog-btn ton" id="tLight" onclick="setTheme(false)" title="Light"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div>
     <div class="theme-tog-track" id="togTrack"></div>
-    <div class="theme-tog-btn" id="tDark" onclick="setTheme(true)" title="Dark">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    </div>
+    <div class="theme-tog-btn" id="tDark" onclick="setTheme(true)" title="Dark"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
   </div>
   </div>
 </aside>
@@ -374,7 +264,6 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
   <div class="sec-hdr">
     <div class="dg" style="width:108px;height:108px;right:36px;top:0"></div>
     <div class="sec-ttl">Selected Work</div>
-    
   </div>
   <div style="padding:12px"><div class="proj-grid">
     <div class="proj-card" onclick="showCs('sidekick')">
@@ -386,7 +275,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
       <div class="card-info"><div class="card-row1"><span class="card-nm">Subscription Manager</span><span class="card-yr">2025 <span class="card-arr">→</span></span></div><div class="card-type">Web App · Enterprise</div><div class="card-desc">Subscription management platform designed for Big 4 company employees.</div></div>
     </div>
     <div class="proj-card" onclick="showCs('nextrep')">
-      <div class="card-img-wrap" style="background:#F0F0F0;display:flex;align-items:center;justify-content:center;padding:20px;"><div style="background:#DCDCDC;border-radius:10px;padding:20px;display:flex;align-items:center;justify-content:center;width:fit-content;"><div style="border-radius:8px;overflow:hidden;border:1px solid #D0D0D0;box-shadow:0 8px 32px rgba(0,0,0,0.10),0 2px 6px rgba(0,0,0,0.06);width:75%"><img src="[ project image ]" style="width:100%;display:block"></div></div></div>
+      <div class="card-img-wrap" style="background:var(--grey-fill);display:flex;align-items:center;justify-content:center;padding:20px 24px;"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/q_auto/f_auto/v1780247551/Change-This_wt0oel.png" alt="NextRep mockup" style="max-width:80%;max-height:80%;width:auto;height:auto;object-fit:contain;display:block;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,0.12),0 2px 6px rgba(0,0,0,0.06)"></div>
       <div class="card-info"><div class="card-row1"><span class="card-nm">NextRep</span><span class="card-yr">2025 <span class="card-arr">→</span></span></div><div class="card-type">Web App · AI SaaS</div><div class="card-desc">AI-powered outbound sales platform redesigned from the ground up — turning complex workflows into simple, data-driven decisions.</div></div>
     </div>
     <div class="proj-card" onclick="showCs('harmoni')">
@@ -409,23 +298,108 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
   <div class="sec-hdr"><div class="sec-ttl">About Me</div></div>
   <div class="about-wrap">
     <div class="about-left">
-      <div class="about-photo" style="border:none;background:none"><img src="[ project image ]" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:3px"></div>
-      <div class="about-dots"><div class="adot on"></div><div class="adot"></div><div class="adot"></div><div class="adot"></div></div>
+      <div class="about-photo-wrap">
+        <div class="about-photo" style="border:none;background:none;position:relative;overflow:hidden">
+          <!-- slides -->
+          <div class="slide active">
+            <img src="https://res.cloudinary.com/dawzgxp2s/image/upload/q_auto/f_auto/v1780348830/IMG_9133_aovyuj.heic" style="width:100%;height:100%;object-fit:cover;object-position:center 55%;display:block;border-radius:3px">
+            <div class="photo-caption">hello world!</div>
+          </div>
+          <div class="slide">
+            <img src="https://res.cloudinary.com/dawzgxp2s/image/upload/q_auto/f_auto/v1780348838/IMG_9315_u5qtri.heic" style="width:100%;height:100%;object-fit:cover;object-position:center 90%;display:block;border-radius:3px">
+            <div class="photo-caption">Two little clouds exploring the field.</div>
+          </div>
+          <div class="slide">
+            <img src="https://res.cloudinary.com/dawzgxp2s/image/upload/q_auto/f_auto/v1780348835/IMG_7323_fwzloy.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block;border-radius:3px">
+            <div class="photo-caption">Chess with dad. Love it.</div>
+          </div>
+          <div class="slide">
+            <img src="https://res.cloudinary.com/dawzgxp2s/image/upload/q_auto/f_auto/v1780348834/IMG_4125_ruum5y.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block;border-radius:3px">
+            <div class="photo-caption">Aperol on top of the mountain. What could be better?</div>
+          </div>
+          <div class="photo-overlay"></div>
+          <div class="photo-gradient"></div>
+          <button class="slide-arrow left" onclick="prevSlide(event)">‹</button>
+          <button class="slide-arrow right" onclick="nextSlide(event)">›</button>
+          <div class="photo-dots">
+            <span class="pdot active" onclick="goSlide(0)"></span>
+            <span class="pdot" onclick="goSlide(1)"></span>
+            <span class="pdot" onclick="goSlide(2)"></span>
+            <span class="pdot" onclick="goSlide(3)"></span>
+          </div>
+        </div>
+      </div>
+
       <div class="about-greet">Hey, I'm Roksolana<br><span class="at">Currently designing at Trinetix</span></div>
-      <p class="about-bio">I design AI-driven SaaS products and complex B2B tools, covering the full cycle from discovery to design systems and dev handoff. Focused on data-heavy interfaces and scalable, shippable solutions.</p>
+      <p class="about-bio">I'm a Product Designer who likes turning complex workflows, edge cases, and business logic into clear product experiences. My Big 4 audit background helps me approach design with structure, logic, and attention to detail.<br><br>Recently, I've been focused on AI-powered SaaS, data-heavy B2B tools, and design systems. I also actively use Figma Make and Claude in my design process to explore product logic, test flow variations, and validate ideas faster before development.</p>
     </div>
     <div class="about-right">
       <div class="dg" style="width:88px;height:88px;right:0;top:0;position:absolute"></div>
+
       <div class="ab-sec"><div class="ab-lbl">Experience</div>
-        <div class="exp-item"><div class="exp-date">2025 – PRESENT</div><div class="exp-role"><span class="exp-arr">↳ </span>Product Designer at Trinetix</div></div>
-        <div class="exp-item"><div class="exp-date">2024 – 2025</div><div class="exp-role"><span class="exp-arr">↳ </span>UX/UI Designer at basa.solutions</div></div>
-        <div class="exp-item"><div class="exp-date">2023 – 2024</div><div class="exp-role"><span class="exp-arr">↳ </span>UX/UI Designer at YARSY</div></div>
+
+        <div class="exp-item">
+          <div class="exp-date">AUG 2025 – PRESENT</div>
+          <div class="exp-role">↳ Product Designer at Trinetix</div>
+          <ul class="exp-bullets">
+            <li>Designed and shipped AI-powered product features used by 90,000+ internal users, owning the end-to-end UX process from discovery and user flows to high-fidelity design and developer handoff.</li>
+            <li>Built and scaled a design system using design tokens and Figma Variables, reducing design-to-development handoff time by ~30% and improving UI consistency across three product lines.</li>
+            <li>Defined design delivery standards, including file structure, naming conventions, component usage, and accessibility guidelines, improving collaboration between design and engineering teams.</li>
+            <li>Leveraged AI-assisted prototyping tools, including Figma Make and Claude, to support moderated and unmoderated usability testing before development, improving task completion by ~23%.</li>
+            <li>Designed a PWA version of the product, increasing mobile session duration by ~35% and improving accessibility across devices.</li>
+            <li>Conducted accessibility audits, established WCAG compliance standards, and led workshops on accessibility and upsell strategies for both the design team and broader Trinetix organization.</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <button class="exp-toggle" onclick="toggleExp('basa')">
+            <div>
+              <div class="exp-date">JUL 2024 – AUG 2025</div>
+              <div class="exp-role">↳ UX/UI Designer at basa.solutions</div>
+            </div>
+            <span class="exp-toggle-arrow">›</span>
+          </button>
+          <div class="exp-collapsed" id="exp-basa">
+            <ul class="exp-bullets">
+              <li>Led end-to-end UX/UI design across 6 complex B2B and B2C platforms in AI, fintech, blockchain, recruitment, and energy tech — from discovery and user flows to high-fidelity design and developer handoff.</li>
+              <li>Redesigned NextRep, an AI-powered outbound sales platform, improving sales team productivity by 41%, reducing churn by 24%, and increasing task completion by 33%.</li>
+              <li>Designed Harmoni, a recruitment SaaS platform that streamlined end-to-end hiring workflows for HR teams managing complex candidate pipelines.</li>
+              <li>Built Astoria Hybrid, a solar plant management dashboard for real-time performance monitoring, issue tracking, and maintenance operations across multiple locations.</li>
+              <li>Designed Fourcore, a blockchain investment platform with KYC flows, simplifying a highly regulated user journey without sacrificing product depth or compliance clarity.</li>
+              <li>Conducted UX audits, competitive analysis, and usability testing to identify bottlenecks and optimize key flows, including onboarding, lead generation, queue management, and candidate review.</li>
+              <li>Built and maintained scalable component libraries and design systems, improving UI consistency and speeding up developer handoff across multiple products.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <button class="exp-toggle" onclick="toggleExp('yarsy')">
+            <div>
+              <div class="exp-date">MAR 2023 – JUL 2024</div>
+              <div class="exp-role">↳ UX/UI Designer at YARSY</div>
+            </div>
+            <span class="exp-toggle-arrow">›</span>
+          </button>
+          <div class="exp-collapsed" id="exp-yarsy">
+            <ul class="exp-bullets">
+              <li>Led UX/UI design and redesign of complex platforms and MVPs across government, AI, and aviation sectors — from wireframes and user flows to high-fidelity UI and developer handoff.</li>
+              <li>Redesigned Frontdesk, a large-scale queue management system used by public institutions, including staff scheduling dashboards and queue displays for waiting areas.</li>
+              <li>Supported Frontdesk's expansion into the Chinese market by designing and testing layouts across varied Chinese character lengths, text overflow scenarios, and multilingual interface constraints.</li>
+              <li>Refreshed the UX/UI for Hermetic AI, an AI-powered lead processing platform, creating a cleaner and more modern interface aligned with the product's intelligent automation capabilities.</li>
+              <li>Streamlined daily workflows for Mach8, an internal platform for pilots, simplifying complex operational interfaces for faster and more efficient day-to-day use.</li>
+            </ul>
+          </div>
+        </div>
+
       </div>
+
       <div class="ab-sec"><div class="ab-lbl">Education</div>
         <div class="exp-item"><div class="exp-role"><span class="exp-arr">↳ </span>UI/UX Designer — Beetroot Academy</div></div>
         <div class="exp-item"><div class="exp-role"><span class="exp-arr">↳ </span>HTML5, CSS3, JS — SoftServe IT Academy</div></div>
         <div class="exp-item"><div class="exp-role"><span class="exp-arr">↳ </span>UX Design Fundamentals — IBM</div></div>
+        <div class="exp-item"><div class="exp-role"><span class="exp-arr">↳ </span>Basic Principles of Design — IBM</div></div>
       </div>
+
       <div class="ab-sec"><div class="ab-lbl">Skills</div>
         <div class="sk-grid">
           <div class="sk-item"><span class="sk-bul">✦</span>AI product design</div><div class="sk-item"><span class="sk-bul">✦</span>Design systems</div>
@@ -434,6 +408,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
           <div class="sk-item"><span class="sk-bul">✦</span>Data-heavy interfaces</div><div class="sk-item"><span class="sk-bul">✦</span>Dev collaboration</div>
         </div>
       </div>
+
       <div class="ab-sec"><div class="ab-lbl">Tools</div>
         <div class="sk-grid">
           <div class="sk-item"><span class="sk-bul">✦</span>Figma & FigJam</div><div class="sk-item"><span class="sk-bul">✦</span>Figma Make</div>
@@ -441,6 +416,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
           <div class="sk-item"><span class="sk-bul">✦</span>Basic HTML/CSS</div><div class="sk-item"><span class="sk-bul">✦</span>Azure & Canva</div>
         </div>
       </div>
+
       <div class="ab-sec"><div class="ab-lbl">Contact</div>
         <div class="ct-item"><span class="exp-arr" style="color:var(--meta)">↳ </span><a href="mailto:roksolana.morozova@gmail.com">roksolana.morozova@gmail.com</a></div>
         <div class="ct-item"><span class="exp-arr" style="color:var(--meta)">↳ </span><a href="https://linkedin.com/in/roksolana-morozova-a46185292" target="_blank">linkedin.com/in/roksolana-morozova</a></div>
@@ -479,134 +455,70 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 <!-- FOURCORE -->
 <div class="view" id="v-fourcore"><div class="cs-wrap"><div class="cs-minnav"><a class="cs-back" onclick="show('work')">← all projects</a><span class="cs-proj-mini">fourcore</span><a class="cs-anch on">about</a><a class="cs-anch">design process</a><a class="cs-anch">key challenges</a><a class="cs-anch">impact</a></div><div class="cs-content"><div class="cs-hero"><div class="dg" style="width:120px;height:120px;right:0;top:0;position:absolute"></div><span class="cs-hero-lbl">[ project image ]</span></div><div class="cs-title">fourcore</div><p class="cs-tagline">Blockchain application for crypto investments with KYC user flows — complex domain, made clear.</p><div class="cs-meta"><div class="cs-mc"><div class="cs-mk">Type</div><div class="cs-mv">Web App</div></div><div class="cs-mc"><div class="cs-mk">Industry</div><div class="cs-mv">Blockchain</div></div><div class="cs-mc"><div class="cs-mk">Year</div><div class="cs-mv">2024</div></div><div class="cs-mc"><div class="cs-mk">Company</div><div class="cs-mv">basa.solutions</div></div></div><div class="cs-sec"><div class="cs-sec-ttl">about</div><p class="cs-body">Fourcore is a blockchain app for crypto investments with KYC flows. Making a highly technical, regulated domain feel accessible without stripping depth from experienced users.</p><span class="ph">[ Add your full project description here ]</span></div><div class="cs-sec"><div class="cs-sec-ttl">design process</div><div class="cs-stats"><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Research</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Wireframe</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Mockup</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Prototype</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Total</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Screens</span></div></div></div><div class="cs-sec"><div class="cs-sec-ttl">key challenges</div><div class="cs-ch"><div class="cs-ch-pair"><div class="cs-prob">[ Add your challenge ]</div><div class="cs-sol">[ Add your solution ]</div></div></div></div><div class="cs-sec"><div class="cs-sec-ttl">impact</div><div class="cs-impact"><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div></div></div></div></div></div>
 
-
-<!-- ══ CASE: SIDEKICK ══ -->
+<!-- SIDEKICK -->
 <div class="view" id="v-sidekick"><div class="cs-wrap"><div class="cs-minnav"><a class="cs-back" onclick="show('work')">← all projects</a><span class="cs-proj-mini">sidekick</span><a class="cs-anch on">about</a><a class="cs-anch">design process</a><a class="cs-anch">key challenges</a><a class="cs-anch">impact</a></div><div class="cs-content"><div class="cs-hero"><div class="dg" style="width:120px;height:120px;right:0;top:0;position:absolute"></div><span class="cs-hero-lbl">[ project image ]</span></div><div class="cs-title">sidekick</div><p class="cs-tagline">A ChatGPT competitor built for Big 4 employees — with secure upload of confidential client files and enterprise-grade AI assistance.</p><div class="cs-meta"><div class="cs-mc"><div class="cs-mk">Type</div><div class="cs-mv">Web App · Enterprise AI</div></div><div class="cs-mc"><div class="cs-mk">Industry</div><div class="cs-mv">Professional Services</div></div><div class="cs-mc"><div class="cs-mk">Year</div><div class="cs-mv">2025</div></div><div class="cs-mc"><div class="cs-mk">Company</div><div class="cs-mv">Trinetix</div></div></div><div class="cs-sec"><div class="cs-sec-ttl">about</div><p class="cs-body">Sidekick is an enterprise AI assistant designed specifically for Big 4 employees. Unlike generic AI tools, it allows secure upload and analysis of confidential client files — solving the critical trust and compliance barrier that prevents professional services firms from adopting AI at scale.</p><span class="ph">[ Add your full project description here ]</span></div><div class="cs-sec"><div class="cs-sec-ttl">design process</div><div class="cs-stats"><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Research</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Wireframe</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Mockup</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Prototype</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Total</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Screens</span></div></div></div><div class="cs-sec"><div class="cs-sec-ttl">key challenges</div><div class="cs-ch"><div class="cs-ch-pair"><div class="cs-prob">[ Add your challenge ]</div><div class="cs-sol">[ Add your solution ]</div></div></div></div><div class="cs-sec"><div class="cs-sec-ttl">impact</div><div class="cs-impact"><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div></div></div></div></div></div>
 
-<!-- ══ CASE: SUBSCRIPTIONS ══ -->
+<!-- SUBSCRIPTIONS -->
 <div class="view" id="v-subscriptions"><div class="cs-wrap"><div class="cs-minnav"><a class="cs-back" onclick="show('work')">← all projects</a><span class="cs-proj-mini">subscriptions</span><a class="cs-anch on">about</a><a class="cs-anch">design process</a><a class="cs-anch">key challenges</a><a class="cs-anch">impact</a></div><div class="cs-content"><div class="cs-hero"><div class="dg" style="width:120px;height:120px;right:0;top:0;position:absolute"></div><span class="cs-hero-lbl">[ project image ]</span></div><div class="cs-title">subscription manager</div><p class="cs-tagline">Subscription management platform designed for Big 4 company employees — bringing clarity and control to complex enterprise software licences.</p><div class="cs-meta"><div class="cs-mc"><div class="cs-mk">Type</div><div class="cs-mv">Web App · Enterprise</div></div><div class="cs-mc"><div class="cs-mk">Industry</div><div class="cs-mv">Professional Services</div></div><div class="cs-mc"><div class="cs-mk">Year</div><div class="cs-mv">2025</div></div><div class="cs-mc"><div class="cs-mk">Company</div><div class="cs-mv">Trinetix</div></div></div><div class="cs-sec"><div class="cs-sec-ttl">about</div><p class="cs-body">A platform that gives Big 4 employees visibility and control over their software subscriptions — tracking licences, usage, renewals and costs across complex enterprise environments.</p><span class="ph">[ Add your full project description here ]</span></div><div class="cs-sec"><div class="cs-sec-ttl">design process</div><div class="cs-stats"><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Research</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Wireframe</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Mockup</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Prototype</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Total</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Screens</span></div></div></div><div class="cs-sec"><div class="cs-sec-ttl">key challenges</div><div class="cs-ch"><div class="cs-ch-pair"><div class="cs-prob">[ Add your challenge ]</div><div class="cs-sol">[ Add your solution ]</div></div></div></div><div class="cs-sec"><div class="cs-sec-ttl">impact</div><div class="cs-impact"><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div></div></div></div></div></div>
 
-<!-- ══ CASE: DESIGN SYSTEM ══ -->
+<!-- DESIGN SYSTEM -->
 <div class="view" id="v-designsystem"><div class="cs-wrap"><div class="cs-minnav"><a class="cs-back" onclick="show('work')">← all projects</a><span class="cs-proj-mini">design system</span><a class="cs-anch on">about</a><a class="cs-anch">design process</a><a class="cs-anch">key challenges</a><a class="cs-anch">impact</a></div><div class="cs-content"><div class="cs-hero"><div class="dg" style="width:120px;height:120px;right:0;top:0;position:absolute"></div><span class="cs-hero-lbl">[ project image ]</span></div><div class="cs-title">design system</div><p class="cs-tagline">Scalable component library and design system built for consistency, speed, and accessibility across complex B2B enterprise products.</p><div class="cs-meta"><div class="cs-mc"><div class="cs-mk">Type</div><div class="cs-mv">Design System</div></div><div class="cs-mc"><div class="cs-mk">Industry</div><div class="cs-mv">Enterprise · B2B</div></div><div class="cs-mc"><div class="cs-mk">Year</div><div class="cs-mv">2025</div></div><div class="cs-mc"><div class="cs-mk">Company</div><div class="cs-mv">Trinetix</div></div></div><div class="cs-sec"><div class="cs-sec-ttl">about</div><p class="cs-body">A comprehensive design system built to unify visual language, speed up cross-functional delivery, and enforce accessibility standards across a suite of enterprise B2B products. Covers components, variables, tokens, documentation, and dev handoff guidelines.</p><span class="ph">[ Add your full project description here ]</span></div><div class="cs-sec"><div class="cs-sec-ttl">design process</div><div class="cs-stats"><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Research</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Wireframe</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Mockup</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Prototype</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Total</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Screens</span></div></div></div><div class="cs-sec"><div class="cs-sec-ttl">key challenges</div><div class="cs-ch"><div class="cs-ch-pair"><div class="cs-prob">[ Add your challenge ]</div><div class="cs-sol">[ Add your solution ]</div></div></div></div><div class="cs-sec"><div class="cs-sec-ttl">impact</div><div class="cs-impact"><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div></div></div></div></div></div>
 
-
-<!-- ══ CASE: HARMONI ══ -->
+<!-- HARMONI -->
 <div class="view" id="v-harmoni"><div class="cs-wrap"><div class="cs-minnav"><a class="cs-back" onclick="show('work')">← all projects</a><span class="cs-proj-mini">harmoni</span><a class="cs-anch on">about</a><a class="cs-anch">design process</a><a class="cs-anch">key challenges</a><a class="cs-anch">impact</a></div><div class="cs-content"><div class="cs-hero"><div class="dg" style="width:120px;height:120px;right:0;top:0;position:absolute"></div><span class="cs-hero-lbl">[ project image ]</span></div><div class="cs-title">harmoni</div><p class="cs-tagline">Intuitive recruitment software to streamline hiring workflows end-to-end — from job posting to onboarding.</p><div class="cs-meta"><div class="cs-mc"><div class="cs-mk">Type</div><div class="cs-mv">B2B SaaS</div></div><div class="cs-mc"><div class="cs-mk">Industry</div><div class="cs-mv">Recruitment</div></div><div class="cs-mc"><div class="cs-mk">Year</div><div class="cs-mv">2025</div></div><div class="cs-mc"><div class="cs-mk">Company</div><div class="cs-mv">basa.solutions</div></div></div><div class="cs-sec"><div class="cs-sec-ttl">about</div><p class="cs-body">Harmoni is an intuitive recruitment platform designed to reduce cognitive load for HR teams managing multiple candidates across complex hiring pipelines.</p><span class="ph">[ Add your full project description here ]</span></div><div class="cs-sec"><div class="cs-sec-ttl">design process</div><div class="cs-stats"><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Research</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Wireframe</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Mockup</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Prototype</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Total</span></div><div class="cs-stat"><span class="cs-sv">—</span><span class="cs-sk">Screens</span></div></div></div><div class="cs-sec"><div class="cs-sec-ttl">key challenges</div><div class="cs-ch"><div class="cs-ch-pair"><div class="cs-prob">[ Add your challenge ]</div><div class="cs-sol">[ Add your solution ]</div></div></div></div><div class="cs-sec"><div class="cs-sec-ttl">impact</div><div class="cs-impact"><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">[ Add metric ]</div></div></div></div></div></div></div>
+
 </main>
 </div>
 
 <script>
 const cDot=document.getElementById('cDot'),cRing=document.getElementById('cRing'),cBlob=document.getElementById('cBlob');
 let mx=0,my=0,rx=0,ry=0,bx=0,by=0,going=false;
-document.addEventListener('mousemove',e=>{
-  mx=e.clientX;my=e.clientY;
-  cDot.style.transform=`translate(${mx}px,${my}px)`;
-  if(!going){going=true;tick()}
-});
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cDot.style.transform=`translate(${mx}px,${my}px)`;if(!going){going=true;tick()}});
 function lerp(a,b,t){return a+(b-a)*t}
-function tick(){
-  rx=lerp(rx,mx,.1);ry=lerp(ry,my,.1);
-  cRing.style.transform=`translate(${rx}px,${ry}px)`;
-  bx=lerp(bx,mx,.13);by=lerp(by,my,.13);
-  cBlob.style.transform=`translate(${bx}px,${by}px)`;
-  requestAnimationFrame(tick);
-}
-// Event delegation — works for all elements including dynamically rendered
-const hoverSels = ['.proj-card','.card-img-wrap','.cs-hero',
-                  '.nav-item','.cs-item','.cs-back','.mob-ni','.cs-anch',
-                  '.flinks a','.rec-card','.theme-tog','.hmbg','.ov-close',
-                  'a','button'];
-
-function matchesSel(el, sels){
-  return sels.some(s=>{ try{ return el.closest(s) }catch(e){return false} });
-}
-
-document.addEventListener('mouseover', e=>{
-  document.body.classList.remove('c-img','c-lnk');
-  if(matchesSel(e.target, hoverSels)) document.body.classList.add('c-lnk');
-});
-document.addEventListener('mouseout', e=>{
-  if(!e.relatedTarget || e.relatedTarget===document.documentElement){
-    document.body.classList.remove('c-img','c-lnk');
-  }
-});
-
+function tick(){rx=lerp(rx,mx,.1);ry=lerp(ry,my,.1);cRing.style.transform=`translate(${rx}px,${ry}px)`;bx=lerp(bx,mx,.13);by=lerp(by,my,.13);cBlob.style.transform=`translate(${bx}px,${by}px)`;requestAnimationFrame(tick)}
+const hoverSels=['.proj-card','.card-img-wrap','.cs-hero','.nav-item','.cs-item','.cs-back','.mob-ni','.cs-anch','.flinks a','.rec-card','.theme-tog','.hmbg','.ov-close','a','button'];
+function matchesSel(el,sels){return sels.some(s=>{try{return el.closest(s)}catch(e){return false}})}
+document.addEventListener('mouseover',e=>{document.body.classList.remove('c-img','c-lnk');if(matchesSel(e.target,hoverSels))document.body.classList.add('c-lnk')});
+document.addEventListener('mouseout',e=>{if(!e.relatedTarget||e.relatedTarget===document.documentElement){document.body.classList.remove('c-img','c-lnk')}});
 const ALL=['work','about','recs','sidekick','subscriptions','nextrep','harmoni','designsystem','astoria','frontdesk','fourcore'];
 function clearAct(){document.querySelectorAll('.nav-item,.cs-item').forEach(e=>e.classList.remove('active'))}
-function show(id){
-  ALL.forEach(v=>{const e=document.getElementById('v-'+v);if(e)e.classList.remove('active')});
-  clearAct();
-  const el=document.getElementById('v-'+id);if(el)el.classList.add('active');
-  const nv=document.getElementById('nv-'+id);if(nv)nv.classList.add('active');
-  window.scrollTo(0,0);
-}
+function show(id){ALL.forEach(v=>{const e=document.getElementById('v-'+v);if(e)e.classList.remove('active')});clearAct();const el=document.getElementById('v-'+id);if(el)el.classList.add('active');const nv=document.getElementById('nv-'+id);if(nv)nv.classList.add('active');window.scrollTo(0,0)}
 function showCs(id){show(id)}
-
 let dark=false;
-function getCenter(el){
-  const r = el.getBoundingClientRect();
-  return {x: r.left + r.width/2, y: r.top + r.height/2};
+function getCenter(el){const r=el.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2}}
+function animateStars(trackId,goingDark){const COUNT=5,DOT_DURATION=400,STAGGER=80;const sunId=trackId==='togTrack'?'tLight':'mLight';const moonId=trackId==='togTrack'?'tDark':'mDark';const fromEl=document.getElementById(goingDark?sunId:moonId);const toEl=document.getElementById(goingDark?moonId:sunId);if(!fromEl||!toEl)return;const from=getCenter(fromEl);const to=getCenter(toEl);for(let i=0;i<COUNT;i++){setTimeout(()=>{const dot=document.createElement('div');dot.className='tog-dot';dot.style.left=from.x+'px';dot.style.top=from.y+'px';dot.style.animation=`dot-fade ${DOT_DURATION}ms ease forwards`;document.body.appendChild(dot);const start=performance.now();function frame(now){const t=Math.min((now-start)/DOT_DURATION,1);const ease=t<0.5?2*t*t:-1+(4-2*t)*t;const x=from.x+(to.x-from.x)*ease;const y=from.y+(to.y-from.y)*ease;dot.style.left=x+'px';dot.style.top=y+'px';if(t<1)requestAnimationFrame(frame);else dot.remove()}requestAnimationFrame(frame)},i*STAGGER)}setTimeout(()=>{toEl.classList.add('tog-glow');setTimeout(()=>toEl.classList.remove('tog-glow'),700)},DOT_DURATION*0.3)}
+function setTheme(isDark){if(dark===isDark)return;const goingDark=isDark;dark=isDark;document.documentElement.setAttribute('data-theme',dark?'dark':'');['tLight','mLight'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('ton',!dark)});['tDark','mDark'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('ton',dark)});animateStars('togTrack',goingDark);animateStars('mTogTrack',goingDark)}
+function goSlide(n){
+  const slides=document.querySelectorAll('.slide');
+  const dots=document.querySelectorAll('.pdot');
+  slides.forEach(s=>s.classList.remove('active'));
+  dots.forEach(d=>d.classList.remove('active'));
+  slides[n].classList.add('active');
+  dots[n].classList.add('active');
 }
-function animateStars(trackId, goingDark){
-  const COUNT = 5;
-  const DOT_DURATION = 400;
-  const STAGGER = 80;
-
-  const sunId  = trackId==='togTrack' ? 'tLight' : 'mLight';
-  const moonId = trackId==='togTrack' ? 'tDark'  : 'mDark';
-  const fromEl = document.getElementById(goingDark ? sunId : moonId);
-  const toEl   = document.getElementById(goingDark ? moonId : sunId);
-  if(!fromEl || !toEl) return;
-
-  const from = getCenter(fromEl);
-  const to   = getCenter(toEl);
-
-  for(let i = 0; i < COUNT; i++){
-    setTimeout(()=>{
-      const dot = document.createElement('div');
-      dot.className = 'tog-dot';
-      dot.style.left = from.x + 'px';
-      dot.style.top  = from.y + 'px';
-      dot.style.animation = `dot-fade ${DOT_DURATION}ms ease forwards`;
-      document.body.appendChild(dot);
-
-      const start = performance.now();
-      function frame(now){
-        const t = Math.min((now - start) / DOT_DURATION, 1);
-        const ease = t < 0.5 ? 2*t*t : -1+(4-2*t)*t;
-        const x = from.x + (to.x - from.x) * ease;
-        const y = from.y + (to.y - from.y) * ease;
-        dot.style.left = x + 'px';
-        dot.style.top  = y + 'px';
-        if(t < 1) requestAnimationFrame(frame);
-        else dot.remove();
-      }
-      requestAnimationFrame(frame);
-    }, i * STAGGER);
-  }
-
-  setTimeout(()=>{
-    toEl.classList.add('tog-glow');
-    setTimeout(()=>toEl.classList.remove('tog-glow'), 700);
-  }, DOT_DURATION * 0.3);
+function nextSlide(e){
+  if(e)e.stopPropagation();
+  const slides=document.querySelectorAll('.slide');
+  const idx=Array.from(slides).indexOf(document.querySelector('.slide.active'));
+  goSlide((idx+1)%slides.length);
 }
-function setTheme(isDark){
-  if(dark===isDark)return;
-  const goingDark=isDark;
-  dark=isDark;
-  document.documentElement.setAttribute('data-theme',dark?'dark':'');
-  ['tLight','mLight'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('ton',!dark)});
-  ['tDark','mDark'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('ton',dark)});
-  animateStars('togTrack', goingDark);
-  animateStars('mTogTrack', goingDark);
+function prevSlide(e){
+  if(e)e.stopPropagation();
+  const slides=document.querySelectorAll('.slide');
+  const idx=Array.from(slides).indexOf(document.querySelector('.slide.active'));
+  goSlide((idx-1+slides.length)%slides.length);
 }
-function togTheme(){setTheme(!dark)}
-
-const mobOv=document.getElementById('mobOv');
-document.getElementById('hBtn').addEventListener('click',()=>{
-  mobOv.style.display='flex';
-  requestAnimationFrame(()=>mobOv.classList.add('open'));
+document.querySelector('.about-photo').addEventListener('click',function(e){
+  if(!e.target.classList.contains('pdot')&&!e.target.classList.contains('slide-arrow')) nextSlide();
 });
+function toggleExp(id){
+  const el=document.getElementById('exp-'+id);
+  const btn=el.previousElementSibling;
+  el.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+const mobOv=document.getElementById('mobOv');
+document.getElementById('hBtn').addEventListener('click',()=>{mobOv.style.display='flex';requestAnimationFrame(()=>mobOv.classList.add('open'))});
 function closeMob(){mobOv.classList.remove('open');setTimeout(()=>{mobOv.style.display='none'},250)}
 document.getElementById('ovClose').addEventListener('click',closeMob);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMob()});
