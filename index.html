@@ -114,6 +114,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .ab-sec{margin-bottom:12px;background:var(--grey-fill);border-radius:6px;padding:16px;border:none}
 .ab-lbl{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:400;text-transform:uppercase;letter-spacing:.03em;color:var(--meta);margin-bottom:16px;padding-bottom:7px;border-bottom:1px solid var(--border)}
 .exp-item{margin-bottom:0;padding:16px 0;border-bottom:1px solid var(--border)}
+.exp-item:first-child{padding-top:0}
 .exp-item:last-child{border-bottom:none}
 .exp-header{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:8px}
 .exp-date{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--meta);letter-spacing:.04em;white-space:nowrap}
@@ -341,18 +342,22 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
       <div class="ab-sec"><div class="ab-lbl">Experience</div>
 
         <div class="exp-item">
-          <div class="exp-header">
-            <div class="exp-role">Product Designer at Trinetix</div>
-            <div class="exp-date">AUG 2025 – PRESENT</div>
+          <button class="exp-toggle open" onclick="toggleExp('trinetix')">
+            <div class="exp-header" style="width:100%">
+              <div class="exp-role">Product Designer at Trinetix</div>
+              <div style="display:flex;align-items:center;gap:8px;white-space:nowrap"><span class="exp-date">AUG 2025 – PRESENT</span><span class="exp-toggle-arrow">›</span></div>
+            </div>
+          </button>
+          <div class="exp-collapsed open" id="exp-trinetix">
+            <ul class="exp-bullets">
+              <li>Designed and shipped AI-powered product features used by 90,000+ internal users, owning the end-to-end UX process from discovery and user flows to high-fidelity design and developer handoff.</li>
+              <li>Built and scaled a design system using design tokens, Figma Variables, reusable components, and shared patterns to improve UI consistency across three product lines.</li>
+              <li>Defined design delivery standards, including file structure, naming conventions, component usage, and accessibility guidelines, improving collaboration between design and engineering teams.</li>
+              <li>Leveraged AI-assisted prototyping tools, including Figma Make and Claude, to support moderated and unmoderated usability testing before development, improving task completion by ~23%.</li>
+              <li>Designed a PWA version of the product, increasing mobile session duration by ~35% and improving accessibility across devices.</li>
+              <li>Conducted accessibility audits, established WCAG compliance standards, and led workshops on accessibility and upsell strategies for both the design team and broader Trinetix organization.</li>
+            </ul>
           </div>
-          <ul class="exp-bullets">
-            <li>Designed and shipped AI-powered product features used by 90,000+ internal users, owning the end-to-end UX process from discovery and user flows to high-fidelity design and developer handoff.</li>
-            <li>Built and scaled a design system using design tokens, Figma Variables, reusable components, and shared patterns to improve UI consistency across three product lines.</li>
-            <li>Defined design delivery standards, including file structure, naming conventions, component usage, and accessibility guidelines, improving collaboration between design and engineering teams.</li>
-            <li>Leveraged AI-assisted prototyping tools, including Figma Make and Claude, to support moderated and unmoderated usability testing before development, improving task completion by ~23%.</li>
-            <li>Designed a PWA version of the product, increasing mobile session duration by ~35% and improving accessibility across devices.</li>
-            <li>Conducted accessibility audits, established WCAG compliance standards, and led workshops on accessibility and upsell strategies for both the design team and broader Trinetix organization.</li>
-          </ul>
         </div>
 
         <div class="exp-item">
