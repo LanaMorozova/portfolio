@@ -314,7 +314,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
           <div class="slide">
             <img src="https://res.cloudinary.com/dawzgxp2s/image/upload/q_auto/f_auto/v1780348834/IMG_4125_ruum5y.jpg" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;display:block;border-radius:3px">
           </div>
-          <div class="photo-caption" id="photoCaption">hello world!</div>
+          <div class="photo-caption" id="photoCaption">That's me, actually!</div>
           <div class="photo-overlay"></div>
           <div class="photo-gradient"></div>
           <button class="slide-arrow left" onclick="prevSlide(event)"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 1.5L3 5L6.5 8.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -488,7 +488,7 @@ let dark=false;
 function getCenter(el){const r=el.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2}}
 function animateStars(trackId,goingDark){const COUNT=5,DOT_DURATION=400,STAGGER=80;const sunId=trackId==='togTrack'?'tLight':'mLight';const moonId=trackId==='togTrack'?'tDark':'mDark';const fromEl=document.getElementById(goingDark?sunId:moonId);const toEl=document.getElementById(goingDark?moonId:sunId);if(!fromEl||!toEl)return;const from=getCenter(fromEl);const to=getCenter(toEl);for(let i=0;i<COUNT;i++){setTimeout(()=>{const dot=document.createElement('div');dot.className='tog-dot';dot.style.left=from.x+'px';dot.style.top=from.y+'px';dot.style.animation=`dot-fade ${DOT_DURATION}ms ease forwards`;document.body.appendChild(dot);const start=performance.now();function frame(now){const t=Math.min((now-start)/DOT_DURATION,1);const ease=t<0.5?2*t*t:-1+(4-2*t)*t;const x=from.x+(to.x-from.x)*ease;const y=from.y+(to.y-from.y)*ease;dot.style.left=x+'px';dot.style.top=y+'px';if(t<1)requestAnimationFrame(frame);else dot.remove()}requestAnimationFrame(frame)},i*STAGGER)}setTimeout(()=>{toEl.classList.add('tog-glow');setTimeout(()=>toEl.classList.remove('tog-glow'),700)},DOT_DURATION*0.3)}
 function setTheme(isDark){if(dark===isDark)return;const goingDark=isDark;dark=isDark;document.documentElement.setAttribute('data-theme',dark?'dark':'');['tLight','mLight'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('ton',!dark)});['tDark','mDark'].forEach(id=>{const e=document.getElementById(id);if(e)e.classList.toggle('ton',dark)});animateStars('togTrack',goingDark);animateStars('mTogTrack',goingDark)}
-const slideCaptions=['hello world!','Two little clouds exploring the field.','Chess with dad. Love it.','Aperol on top of the mountain. What could be better?'];
+const slideCaptions=['That\'s me, actually!','Two little clouds exploring the field.','Chess with dad. Love it.','Aperol on top of the mountain. What could be better?'];
 function goSlide(n){
   const slides=document.querySelectorAll('.slide');
   const dots=document.querySelectorAll('.pdot');
