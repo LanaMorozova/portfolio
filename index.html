@@ -112,13 +112,14 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .about-bio{font-family:'Open Sans',sans-serif;font-size:12.5px;color:var(--text);line-height:1.8}
 .about-right{padding:0;overflow-y:auto;height:100%;background:transparent}
 .ab-sec{margin-bottom:12px;background:var(--grey-fill);border-radius:6px;padding:16px;border:none}
-.ab-lbl{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--label);margin-bottom:16px;padding-bottom:7px;border-bottom:1px solid var(--border)}
+.ab-lbl{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.03em;color:var(--meta);margin-bottom:16px;padding-bottom:7px;border-bottom:1px solid var(--border)}
 .exp-item{margin-bottom:20px}
-.exp-date{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--meta);margin-bottom:4px;letter-spacing:.04em}
-.exp-role{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--label);line-height:1.5;margin-bottom:8px}
-.exp-bullets{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.8;margin-top:8px;padding-left:0;list-style:none}
+.exp-header{display:flex;align-items:baseline;justify-content:space-between;gap:8px;margin-bottom:8px}
+.exp-date{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--meta);letter-spacing:.04em;white-space:nowrap}
+.exp-role{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;color:var(--label);line-height:1.5}
+.exp-bullets{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.8;margin-top:0;padding-left:0;list-style:none}
 .exp-bullets li{display:flex;gap:8px;margin-bottom:6px}
-.exp-bullets li::before{content:'↳';color:var(--meta);flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:1px}
+.exp-bullets li::before{content:'•';color:var(--meta);flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:14px;line-height:1.6}
 
 /* dropdown for collapsed experience */
 .exp-toggle{display:flex;align-items:center;gap:8px;cursor:none;background:none;border:none;padding:0;width:100%}
@@ -339,8 +340,10 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
       <div class="ab-sec"><div class="ab-lbl">Experience</div>
 
         <div class="exp-item">
-          <div class="exp-date">AUG 2025 – PRESENT</div>
-          <div class="exp-role">↳ Product Designer at Trinetix</div>
+          <div class="exp-header">
+            <div class="exp-role">Product Designer at Trinetix</div>
+            <div class="exp-date">AUG 2025 – PRESENT</div>
+          </div>
           <ul class="exp-bullets">
             <li>Designed and shipped AI-powered product features used by 90,000+ internal users, owning the end-to-end UX process from discovery and user flows to high-fidelity design and developer handoff.</li>
             <li>Built and scaled a design system using design tokens and Figma Variables, reducing design-to-development handoff time by ~30% and improving UI consistency across three product lines.</li>
@@ -353,11 +356,10 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 
         <div class="exp-item">
           <button class="exp-toggle" onclick="toggleExp('basa')">
-            <div>
-              <div class="exp-date">JUL 2024 – AUG 2025</div>
-              <div class="exp-role">↳ UX/UI Designer at basa.solutions</div>
+            <div class="exp-header" style="width:100%">
+              <div class="exp-role">UX/UI Designer at basa.solutions</div>
+              <div style="display:flex;align-items:center;gap:8px;white-space:nowrap"><span class="exp-date">JUL 2024 – AUG 2025</span><span class="exp-toggle-arrow">›</span></div>
             </div>
-            <span class="exp-toggle-arrow">›</span>
           </button>
           <div class="exp-collapsed" id="exp-basa">
             <ul class="exp-bullets">
@@ -374,11 +376,10 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 
         <div class="exp-item">
           <button class="exp-toggle" onclick="toggleExp('yarsy')">
-            <div>
-              <div class="exp-date">MAR 2023 – JUL 2024</div>
-              <div class="exp-role">↳ UX/UI Designer at YARSY</div>
+            <div class="exp-header" style="width:100%">
+              <div class="exp-role">UX/UI Designer at YARSY</div>
+              <div style="display:flex;align-items:center;gap:8px;white-space:nowrap"><span class="exp-date">MAR 2023 – JUL 2024</span><span class="exp-toggle-arrow">›</span></div>
             </div>
-            <span class="exp-toggle-arrow">›</span>
           </button>
           <div class="exp-collapsed" id="exp-yarsy">
             <ul class="exp-bullets">
