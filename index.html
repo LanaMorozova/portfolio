@@ -147,12 +147,14 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .ct-item{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.5;display:flex;align-items:baseline;gap:5px;margin-bottom:4px}
 .ct-item a{color:var(--text);text-decoration:none;cursor:none}
 .ct-item a:hover{color:var(--label)}
-.recs-wrap{padding:26px 36px;display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.rec-card{border:1px solid var(--border);border-radius:3px;padding:20px;transition:background var(--tr)}
+.recs-wrap{padding:26px 36px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.rec-card{border:1px solid var(--border);border-radius:3px;padding:20px;transition:background var(--tr);display:flex;flex-direction:column}
 .rec-card:hover{background:var(--grey-fill)}
 .rec-qm{font-family:'IBM Plex Mono',monospace;font-size:26px;color:var(--border);line-height:1;margin-bottom:9px;display:block}
-.rec-q{font-family:'Open Sans',sans-serif;font-size:12.5px;color:var(--text);line-height:1.8;margin-bottom:13px}
-.rec-bot{border-top:1px solid var(--border);padding-top:10px}
+.rec-q{font-family:'Open Sans',sans-serif;font-size:12.5px;color:var(--text);line-height:1.8;margin-bottom:13px;flex:1}
+.rec-bot{border-top:1px solid var(--border);padding-top:10px;display:flex;align-items:center;gap:10px}
+.rec-avatar{width:34px;height:34px;border-radius:50%;flex-shrink:0;background:var(--grey-mid);overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;color:var(--meta);text-transform:uppercase}
+.rec-avatar img{width:100%;height:100%;object-fit:cover}
 .rec-nm{font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--label);display:block}
 .rec-rl{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--meta);margin-top:2px}
 .cs-wrap{display:grid;grid-template-columns:160px 1fr;min-height:calc(100vh - 55px)}
@@ -211,7 +213,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .mob-tr .ton{color:var(--label);font-weight:600}
 @media(max-width:1024px){.sidebar{display:none}.mob-bar{display:flex}.mob-ov{display:flex}.main{margin-left:0;padding-top:52px}.sec-hdr{padding:16px 18px 0}.recs-wrap,.cs-content{padding:16px 18px}.cs-wrap{grid-template-columns:1fr}.cs-minnav{display:none}.vfooter{padding:12px 18px 18px}}
 @media(max-width:1024px) and (min-width:640px){.proj-grid{grid-template-columns:1fr 1fr}.about-wrap{grid-template-columns:1fr}.about-left{border-right:none;border-bottom:1px solid var(--border);padding:18px}.about-right{padding:18px}}
-@media(max-width:639px){.proj-grid{grid-template-columns:1fr}.proj-card:nth-child(even),.proj-card:nth-child(odd){border-right:none}.about-wrap{grid-template-columns:1fr}.about-left{border-right:none;border-bottom:1px solid var(--border);padding:16px}.about-right{padding:16px}.recs-wrap{grid-template-columns:1fr}.cs-stats{grid-template-columns:repeat(3,1fr)}.cs-ch-pair,.sk-grid{grid-template-columns:1fr}.cs-impact{grid-template-columns:1fr}.cs-meta{grid-template-columns:1fr 1fr}.cs-mc:nth-child(2){border-right:none}.cs-mc:nth-child(3){border-top:1px solid var(--border)}.cs-mc:nth-child(4){border-top:1px solid var(--border)}.cs-title{font-size:18px}}
+@media(max-width:639px){.proj-grid{grid-template-columns:1fr}.proj-card:nth-child(even),.proj-card:nth-child(odd){border-right:none}.about-wrap{grid-template-columns:1fr}.about-left{border-right:none;border-bottom:1px solid var(--border);padding:16px}.about-right{padding:16px}.recs-wrap{grid-template-columns:1fr 1fr}.cs-stats{grid-template-columns:repeat(3,1fr)}.cs-ch-pair,.sk-grid{grid-template-columns:1fr}.cs-impact{grid-template-columns:1fr}.cs-meta{grid-template-columns:1fr 1fr}.cs-mc:nth-child(2){border-right:none}.cs-mc:nth-child(3){border-top:1px solid var(--border)}.cs-mc:nth-child(4){border-top:1px solid var(--border)}.cs-title{font-size:18px}}
 @media(max-width:768px){.dg{display:none}}
 </style>
 </head>
@@ -461,8 +463,9 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 <div class="view" id="v-recs">
   <div class="sec-hdr"><div class="dg" style="width:108px;height:108px;right:36px;top:0"></div><div class="sec-ttl">Recommendations</div></div>
   <div class="recs-wrap">
-    <div class="rec-card"><span class="rec-qm">"</span><p class="rec-q">One of the most proactive and thoughtful Product Designers I've worked with. She consistently delivers remarkable solutions for both complex B2B and enterprise platforms. Beyond her exceptional technical skills, she has outstanding ownership and attention to detail.</p><div class="rec-bot"><span class="rec-nm">Lilya Shaze</span><div class="rec-rl">Head of Design, Trinetix</div></div></div>
-    <div class="rec-card"><span class="rec-qm">"</span><p class="rec-q">I had the pleasure of working with Roksolana as a Product Designer and I can't help but recommend her. Her design work is of very high quality — thoughtful, polished, and always aligned with the product goals.</p><div class="rec-bot"><span class="rec-nm">Anastasia Ratio</span><div class="rec-rl">UX Lead, Visiting Practitioner</div></div></div>
+    <div class="rec-card"><span class="rec-qm">"</span><p class="rec-q">Roksolana is one of the most proactive and thoughtful Product Designers I've worked with. She consistently advocates for solutions that are both user-friendly and scalable across complex B2B and enterprise platforms. Roksolana led the accessibility initiative with outstanding ownership and attention to detail. Beyond her strong expertise in design systems and AI workflows, she is a reliable teammate whose input continuously improves both products and collaboration. I'd wholeheartedly recommend Roksolana to any team looking for a designer who combines strong product thinking with empathy, initiative, and execution.</p><div class="rec-bot"><div class="rec-avatar">LS</div><div><span class="rec-nm">Liliya Skapa</span><div class="rec-rl">Technical Delivery Manager</div></div></div></div>
+    <div class="rec-card"><span class="rec-qm">"</span><p class="rec-q">I've worked with Roksolana for two years and have consistently been impressed by her ability to bring clarity to ambiguous product challenges. She is deeply user-centric, combining strong UX judgment with polished UI work to create experiences that meet real user needs. She's also a responsible, responsive, and reliable collaborator who makes cross-functional work smoother. I'd gladly recommend Roksolana to any team looking for a designer who is curious, pragmatic, and great to work with.</p><div class="rec-bot"><div class="rec-avatar">AC</div><div><span class="rec-nm">Adam Clark</span><div class="rec-rl">GenAI Product Leader, Deloitte</div></div></div></div>
+    <div class="rec-card"><span class="rec-qm">"</span><p class="rec-q">I had the pleasure of working with Roksolana as a Product Designer and I can highly recommend her. She is proactive, ambitious and consistently brings a very positive attitude to the team. Roksolana is easy to work with, full of ideas, and has a strong understanding of what the business really needs. On top of that, her design work is of very high quality — thoughtful, polished, and always aligned with the product goals.</p><div class="rec-bot"><div class="rec-avatar">AL</div><div><span class="rec-nm">Anastasia Lyuta</span><div class="rec-rl">UX/UI Designer, Enterprise Design Thinking Practitioner</div></div></div></div>
   </div>
   <div class="vfooter">
     <div class="flinks"><a href="mailto:roksolana.morozova@gmail.com">Email</a><span class="fsep">/</span><a href="https://linkedin.com/in/roksolana-morozova-a46185292" target="_blank">LinkedIn</a><span class="fsep">/</span><a href="https://behance.net/roksolamorozov" target="_blank">Behance</a><span class="fsep">/</span><a href="#">Résumé</a></div>
