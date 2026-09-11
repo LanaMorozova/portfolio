@@ -73,12 +73,12 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .card-img-wrap{width:100%;aspect-ratio:16/9;background:var(--grey-fill);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;transition:background var(--tr);border-radius:2px}
 .proj-card:hover .card-img-wrap{background:var(--grey-mid)}
 .card-img-lbl{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--meta);opacity:.4;border:1px dashed var(--border);padding:5px 10px;border-radius:2px}
-.card-info{padding:12px 20px 16px;border-top:1px solid var(--border)}
+.card-info{--ci-pt:12px;--ci-px:20px;padding:var(--ci-pt) var(--ci-px) 16px;border-top:1px solid var(--border);position:relative}
 .card-row1{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1px}
 .card-nm{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--label)}
-.card-yr{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--meta);display:flex;align-items:center;gap:3px}
-.card-arr{opacity:0;transition:opacity .16s,transform .16s}
-.proj-card:hover .card-arr{opacity:1;transform:translate(2px,-2px)}
+.card-yr{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--meta);display:flex;align-items:center;gap:0;position:absolute;top:var(--ci-pt);right:var(--ci-px)}
+.card-arr{display:inline-block;width:14px;margin-left:-14px;opacity:0;transform:translateX(5px);font-size:15px;line-height:1;flex-shrink:0;transition:opacity .2s ease,margin-left .2s ease,transform .2s ease}
+.proj-card:hover .card-arr{opacity:1;margin-left:2px;transform:translateX(0)}
 .card-type{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--meta);margin-bottom:6px}
 .card-desc{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.65}
 .vfooter{padding:0 12px;height:44px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:fixed;bottom:0;left:var(--sidebar-w);right:0;background:var(--bg);z-index:50;transition:background var(--tr),border-color var(--tr)}
@@ -156,7 +156,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .rec-card:last-child{grid-column:1/-1;max-width:calc(50% - 8px)}
 .rec-avatar{width:34px;height:34px;border-radius:4px;flex-shrink:0;background:var(--grey-mid);overflow:hidden;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:9px;font-weight:600;color:var(--meta);text-transform:uppercase}
 .rec-avatar img{width:100%;height:100%;object-fit:cover}
-.rec-nm{font-family:'IBM Plex Mono',monospace;font-size:8.5px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--label);display:block}
+.rec-nm{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--label);display:block}
 .rec-rl{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--meta);margin-top:2px}
 .cs-wrap{display:grid;grid-template-columns:160px 1fr;min-height:calc(100vh - 55px)}
 .cs-minnav{padding:26px 0 26px 36px;position:sticky;top:0;height:100vh;overflow-y:auto;border-right:1px solid var(--border)}
@@ -257,8 +257,8 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
   <p class="sb-bio">Product Designer with a Big 4 audit background, turning complex B2B workflows into intuitive AI-powered SaaS products and scalable design systems.</p>
   <div>
     <div class="nav-item active" id="nv-work" onclick="show('work')"><div class="nav-thumb"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/v1789046237/layers-icon_a2gczd.png" alt="Work" style="width:100%;height:100%;object-fit:cover;display:block"></div><div><span class="nav-label">Work</span><span class="nav-sub">A selection of recent work</span></div></div>
-    <div class="nav-item" id="nv-about" onclick="show('about')"><div class="nav-thumb"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/v1789058082/my-photo_jrq9s1.png" alt="About" style="width:100%;height:100%;object-fit:cover;display:block"></div><div><span class="nav-label">About</span><span class="nav-sub">Background & skills</span></div></div>
-    <div class="nav-item" id="nv-recs" onclick="show('recs')"><div class="nav-thumb">RC</div><div><span class="nav-label">Recommendations</span><span class="nav-sub">What people say</span></div></div>
+    <div class="nav-item" id="nv-about" onclick="show('about')"><div class="nav-thumb"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/v1789122737/my-photo1_yzz9nt.png" alt="About" style="width:100%;height:100%;object-fit:cover;display:block"></div><div><span class="nav-label">About</span><span class="nav-sub">Background & skills</span></div></div>
+    <div class="nav-item" id="nv-recs" onclick="show('recs')"><div class="nav-thumb"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/v1789124222/quotation-mark-dark_kts53c.png" alt="Recommendations" style="width:100%;height:100%;object-fit:cover;display:block"></div><div><span class="nav-label">Recommendations</span><span class="nav-sub">What people say</span></div></div>
   </div>
   <div class="sb-divider"></div>
   <div class="cs-lbl">Selected Case Studies</div>
