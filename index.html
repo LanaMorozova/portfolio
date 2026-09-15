@@ -72,13 +72,15 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .proj-card:hover{background:var(--grey-fill)}
 .card-img-wrap{width:100%;aspect-ratio:16/9;background:var(--grey-fill);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;transition:background var(--tr);border-radius:2px}
 .proj-card:hover .card-img-wrap{background:var(--grey-mid)}
+.card-img-wrap img{transition:transform 320ms cubic-bezier(.22,.61,.36,1)}
+.proj-card:hover .card-img-wrap img{transform:scale(1.04)}
 .card-img-lbl{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--meta);opacity:.4;border:1px dashed var(--border);padding:5px 10px;border-radius:2px}
 .card-info{--ci-pt:12px;--ci-px:20px;padding:var(--ci-pt) var(--ci-px) 16px;border-top:1px solid var(--border);position:relative}
 .card-row1{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1px}
 .card-nm{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;color:var(--label)}
 .card-yr{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--meta);display:flex;align-items:center;gap:0;position:absolute;top:var(--ci-pt);right:var(--ci-px)}
 .card-arr{display:inline-block;width:14px;margin-left:-14px;opacity:0;transform:translateX(5px);font-size:15px;line-height:1;flex-shrink:0;transition:opacity .2s ease,margin-left .2s ease,transform .2s ease}
-.proj-card:hover .card-arr{opacity:1;margin-left:2px;transform:translateX(0)}
+.proj-card:hover .card-arr{opacity:1;margin-left:4px;transform:translateX(0)}
 .card-type{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--meta);margin-bottom:6px}
 .card-desc{font-family:'Open Sans',sans-serif;font-size:12px;color:var(--text);line-height:1.65}
 .vfooter{padding:0 12px;height:44px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:fixed;bottom:0;left:var(--sidebar-w);right:0;background:var(--bg);z-index:50;transition:background var(--tr),border-color var(--tr)}
@@ -295,7 +297,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
       <div class="card-info"><div class="card-row1"><span class="card-nm">Subscription Manager</span><span class="card-yr">2025 <span class="card-arr">→</span></span></div><div class="card-type">Web App · Enterprise</div><div class="card-desc">Subscription management platform designed for Big 4 company employees.</div></div>
     </div>
     <div class="proj-card" onclick="showCs('nextrep')">
-      <div class="card-img-wrap" style="background:var(--grey-fill);display:flex;align-items:center;justify-content:center;padding:20px 24px;"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/q_auto/f_auto/v1780247551/Change-This_wt0oel.png" alt="NextRep mockup" style="max-width:80%;max-height:80%;width:auto;height:auto;object-fit:contain;display:block;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,0.12),0 2px 6px rgba(0,0,0,0.06)"></div>
+      <div class="card-img-wrap" style="background:var(--grey-fill);display:flex;align-items:center;justify-content:center;padding:20px 24px;"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/f_auto,q_auto:best,w_1600,c_limit/v1780247551/Change-This_wt0oel.png" alt="NextRep mockup" style="max-width:80%;max-height:80%;width:auto;height:auto;object-fit:contain;display:block;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,0.12),0 2px 6px rgba(0,0,0,0.06)"></div>
       <div class="card-info"><div class="card-row1"><span class="card-nm">NextRep</span><span class="card-yr">2025 <span class="card-arr">→</span></span></div><div class="card-type">Web App · AI SaaS</div><div class="card-desc">AI-powered outbound sales platform redesigned from the ground up — turning complex workflows into simple, data-driven decisions.</div></div>
     </div>
     <div class="proj-card" onclick="showCs('harmoni')">
