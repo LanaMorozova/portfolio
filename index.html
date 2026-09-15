@@ -32,7 +32,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .sb-scroll{flex:1;overflow-y:auto;padding:0 12px;padding-bottom:8px;min-height:0}
 .sb-name{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--label);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sb-bio{font-family:'Open Sans',sans-serif;font-size:11px;color:var(--meta);line-height:1.65;margin-bottom:22px}
-.nav-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:6px;cursor:none;margin-bottom:6px;transition:background var(--tr),transform var(--tr),box-shadow var(--tr);border:1px solid var(--border);text-decoration:none;background:transparent;height:64px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px;cursor:none;margin-bottom:6px;transition:background var(--tr),transform var(--tr),box-shadow var(--tr);border:1px solid var(--border);text-decoration:none;background:transparent;height:64px}
 .nav-item.active{background:var(--grey-fill);border-color:transparent}
 .nav-item:hover{transform:scale(1.015);box-shadow:0 1px 4px rgba(0,0,0,0.04)}
 .nav-thumb{width:44px;height:44px;border-radius:4px;flex-shrink:0;background:var(--grey-fill);border:none;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--meta);font-weight:600;transition:background var(--tr);overflow:hidden}
@@ -41,7 +41,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .nav-sub{font-family:'Open Sans',sans-serif;font-size:11px;color:var(--meta);display:block;margin-top:2px}
 .sb-divider{height:16px;background:transparent;margin:8px 0;border:none}
 .cs-lbl{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.12em;color:var(--meta);margin-bottom:7px;padding:0}
-.cs-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:6px;cursor:none;margin-bottom:6px;transition:background var(--tr),transform var(--tr),box-shadow var(--tr);border:1px solid var(--border);text-decoration:none;background:transparent;height:64px}
+.cs-item{display:flex;align-items:center;gap:12px;padding:10px;border-radius:8px;cursor:none;margin-bottom:6px;transition:background var(--tr),transform var(--tr),box-shadow var(--tr);border:1px solid var(--border);text-decoration:none;background:transparent;height:64px}
 .cs-item.active{background:var(--grey-fill);border-color:transparent}
 .cs-item:hover{transform:scale(1.015);box-shadow:0 1px 4px rgba(0,0,0,0.04)}
 .cs-thumb{width:44px;height:44px;border-radius:4px;flex-shrink:0;background:var(--grey-fill);border:none;display:flex;align-items:center;justify-content:center;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--meta);font-weight:600;transition:background var(--tr);overflow:hidden}
@@ -68,7 +68,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .sec-ttl{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--label);margin-bottom:0;text-align:left}
 .dg{position:absolute;pointer-events:none;background-image:radial-gradient(circle,var(--grey-mid) 1.2px,transparent 1.2px);background-size:18px 18px;opacity:.6;border-radius:2px}
 .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.proj-card{border:1px solid var(--border);border-radius:4px;cursor:none;transition:background var(--tr);overflow:hidden;background:var(--bg)}
+.proj-card{border:1px solid var(--border);border-radius:8px;cursor:none;transition:background var(--tr);overflow:hidden;background:var(--bg)}
 .proj-card:hover{background:var(--grey-fill)}
 .card-img-wrap{width:100%;aspect-ratio:16/9;background:var(--grey-fill);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;transition:background var(--tr);border-radius:2px}
 .proj-card:hover .card-img-wrap{background:var(--grey-mid)}
@@ -297,7 +297,7 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
       <div class="card-info"><div class="card-row1"><span class="card-nm">Subscription Manager</span><span class="card-yr">2025 <span class="card-arr">→</span></span></div><div class="card-type">Web App · Enterprise</div><div class="card-desc">Subscription management platform designed for Big 4 company employees.</div></div>
     </div>
     <div class="proj-card" onclick="showCs('nextrep')">
-      <div class="card-img-wrap" style="display:flex;align-items:center;justify-content:center;padding:20px 24px;"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/f_auto,q_auto:best,w_1600,c_limit/v1789477871/Next-rep_yglmp4.png" alt="NextRep mockup" style="max-width:85%;max-height:85%;width:auto;height:auto;object-fit:contain;display:block;border-radius:6px;box-shadow:0 0 4px rgba(0,0,0,0.04),0 0 0 4px var(--grey-fill),0 0 0 5px var(--frame);outline:none"></div>
+      <div class="card-img-wrap" style="display:flex;align-items:center;justify-content:center;padding:20px 24px;"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/f_auto,q_auto:best,w_1600,c_limit/v1789477871/Next-rep_yglmp4.png" alt="NextRep mockup" style="max-width:85%;max-height:85%;width:auto;height:auto;object-fit:contain;display:block;border-radius:4px;box-shadow:0 0 4px rgba(0,0,0,0.04),0 0 0 4px var(--grey-fill),0 0 0 5px var(--frame);outline:none"></div>
       <div class="card-info"><div class="card-row1"><span class="card-nm">NextRep</span><span class="card-yr">2025 <span class="card-arr">→</span></span></div><div class="card-type">Web App · AI SaaS</div><div class="card-desc">AI-powered outbound sales platform redesigned from the ground up — turning complex workflows into simple, data-driven decisions.</div></div>
     </div>
     <div class="proj-card" onclick="showCs('harmoni')">
