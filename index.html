@@ -67,6 +67,12 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 #v-about{display:none;flex-direction:column;height:100vh;padding-bottom:0;min-height:unset}
 #v-about.active{display:flex}
 @keyframes fV{from{opacity:0}to{opacity:1}}
+.tablet-mockup-wrap{position:relative;width:100%;border-radius:8px;overflow:hidden}
+.tablet-frame{display:block;width:100%;height:auto;position:relative;z-index:2;pointer-events:none}
+.tablet-screen-area{position:absolute;z-index:1;overflow:hidden;left:27.28%;top:22.85%;width:44.53%;height:49.51%;background:#f4f4f8}
+.tablet-scroll-strip{display:flex;flex-direction:column;animation:tablet-scroll 25s ease-in-out infinite}
+.tablet-scroll-strip img{width:100%;aspect-ratio:2880/1700;object-fit:cover;object-position:top;display:block;flex-shrink:0}
+@keyframes tablet-scroll{0%,15%{transform:translateY(0)}20%,35%{transform:translateY(-14.286%)}40%,55%{transform:translateY(-28.571%)}60%,75%{transform:translateY(-42.857%)}80%,95%{transform:translateY(-57.143%)}100%{transform:translateY(-71.429%)}}
 .sec-hdr{padding:0 12px;position:relative;height:44px;display:flex;align-items:center;border-bottom:1px solid var(--border)}
 .sec-ttl{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.06em;color:var(--label);margin-bottom:0;text-align:left}
 .dg{position:absolute;pointer-events:none;background-image:radial-gradient(circle,var(--grey-mid) 1.2px,transparent 1.2px);background-size:18px 18px;opacity:.6;border-radius:2px}
@@ -567,6 +573,19 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 </div>
 
 <div id="as-challenges" class="cs-sec cs-sec-id" style="display:flex;flex-direction:column;border:none;padding:88px 36px;gap:32px"><div style="display:flex;flex-direction:column;align-items:flex-start;padding:0 52px 0 calc(50% - 36px);gap:8px"><div class="cs-sec-ttl">Key challenges</div><p class="cs-body">Energy simulations involve dozens of parameters — users had to configure everything at once, leading to input errors and abandonment. Designed a step-by-step "Run simulation" flow that guides users through inputs without overwhelming them, then surfaces results as clear, actionable charts.</p><p class="cs-body">Operators needed to create, customize, download, and share reports with stakeholders who don't have platform access. Built a create-to-share pipeline within the product — generate, customise, export, and send reports without leaving Astoria.</p><p class="cs-body">From technical operators to executives, each role needs different first steps. Generic onboarding left most users lost. Adaptive onboarding that detects each role and guides them toward their primary workflow — monitoring, simulations, or reports.</p><p class="cs-body">Energy systems require strict access control. Existing solutions added security at the cost of daily usability. Integrated 2FA and role-based permissions into the auth flow without adding friction to everyday tasks.</p></div></div>
+
+<div class="tablet-mockup-wrap">
+<div class="tablet-screen-area"><div class="tablet-scroll-strip">
+<img src="https://res.cloudinary.com/dawzgxp2s/image/upload/f_auto,q_auto,w_1400/v1790596048/Dashboard_astoria_wjf3w1.png" alt="Astoria Dashboard">
+<img src="https://res.cloudinary.com/dawzgxp2s/image/upload/f_auto,q_auto,w_1400/v1790596053/Overview_astoria_b8zq8d.png" alt="Astoria Overview">
+<img src="https://res.cloudinary.com/dawzgxp2s/image/upload/f_auto,q_auto,w_1400/v1790765112/Run_simulation_astoria_xhnsgp.png" alt="Astoria Run Simulation">
+<img src="https://res.cloudinary.com/dawzgxp2s/image/upload/f_auto,q_auto,w_1400/v1790765118/Simulation_astoria_ewr2if.png" alt="Astoria Simulation">
+<img src="https://res.cloudinary.com/dawzgxp2s/image/upload/f_auto,q_auto,w_1400/v1790765121/Reports_astoria_nr48hb.png" alt="Astoria Reports">
+<img src="https://res.cloudinary.com/dawzgxp2s/image/upload/f_auto,q_auto,w_1400/v1790596048/Dashboard_astoria_wjf3w1.png" alt="" aria-hidden="true">
+<img src="https://res.cloudinary.com/dawzgxp2s/image/upload/f_auto,q_auto,w_1400/v1790596053/Overview_astoria_b8zq8d.png" alt="" aria-hidden="true">
+</div></div>
+<img class="tablet-frame" src="https://res.cloudinary.com/dawzgxp2s/image/upload/v1790767064/badcf690-921c-43ee-82ab-fee718ba7cbb_pkuwnn.png" alt="Hands holding a tablet showing Astoria screens">
+</div>
 
 <div id="as-ui" class="cs-sec cs-sec-id" style="padding:88px 36px"><div class="cs-sec-ttl" style="margin-bottom:24px">User interface</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden"><div style="padding:20px;border-right:1px solid var(--border)"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--label);margin-bottom:6px">Monitor</div><p class="cs-body">Portfolio dashboard and individual plant deep-dives with live performance data.</p></div><div style="padding:20px;border-right:1px solid var(--border)"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--label);margin-bottom:6px">Predict</div><p class="cs-body">Simulations engine with configurable scenarios for energy output forecasting.</p></div><div style="padding:20px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--label);margin-bottom:6px">Report</div><p class="cs-body">Automated report creation with download and sharing to external stakeholders.</p></div></div><p class="cs-body" style="margin-top:16px">Clean data visualizations with the purple accent palette signal a modern energy-tech brand. Full auth system with sign up, sign in, password reset, and 2FA.</p></div>
 
