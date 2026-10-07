@@ -242,6 +242,26 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 .tablet-showcase{width:100%;background:var(--grey-fill);border-radius:8px;padding:64px 24px;display:flex;align-items:center;justify-content:center;gap:48px}
 .tablet-showcase img{max-width:42%;height:auto;display:block;border-radius:4px;box-shadow:0 0 4px rgba(0,0,0,0.04),0 0 0 8px var(--grey-fill),0 0 0 9px var(--frame);outline:none}
 @media(max-width:768px){.tablet-showcase{flex-direction:column;gap:32px;padding:40px 16px}.tablet-showcase img{max-width:80%}}
+.ui-stack{width:100%;background:var(--grey-fill);border-radius:8px;padding:124px;display:flex;flex-direction:column;align-items:center;gap:48px}
+.ui-stack .ui-frame{width:55%;border-radius:4px;box-shadow:0 0 6px rgba(58,58,58,0.25),0 0 0 8px var(--grey-fill),0 0 0 9px var(--frame);outline:none;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.ui-stack .ui-frame.ui-active{width:100%}
+.ui-stack{position:relative}
+.ui-dots{position:absolute;right:56px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:14px;z-index:2}
+.ui-dot{position:relative;width:10px;height:10px;padding:0;border:none;border-radius:50%;background:var(--subtle);cursor:pointer;transition:background var(--tr),transform var(--tr)}
+.ui-dot::after{content:'';position:absolute;inset:-8px}
+.ui-dot:hover{background:var(--meta);transform:scale(1.2)}
+.ui-dot.on{background:var(--label)}
+.ui-dot:focus-visible{outline:2px solid var(--meta);outline-offset:3px}
+.ui-cursor{position:absolute;left:0;top:0;width:24px;height:24px;pointer-events:none;z-index:3;opacity:0;transition:transform .8s cubic-bezier(.4,0,.2,1),opacity .4s ease}
+.ui-cursor.show{opacity:1}
+.ui-cursor svg{display:block;filter:drop-shadow(0 1px 2px rgba(0,0,0,.25))}
+.ui-cursor::after{content:'';position:absolute;left:-14px;top:-16px;width:36px;height:36px;border-radius:50%;background:var(--meta);opacity:0}
+.ui-cursor.click::after{animation:ui-ripple .6s ease-out}
+@keyframes ui-ripple{from{transform:scale(.3);opacity:.45}to{transform:scale(1.3);opacity:0}}
+.ui-stack .ui-frame img{transition:filter .4s ease}
+.ui-stack .ui-frame:not(.ui-active) img{filter:brightness(.7)}
+.ui-stack .ui-frame img{width:100%;height:auto;display:block;border-radius:4px}
+@media(max-width:768px){.ui-stack{padding:32px 24px;gap:32px}.ui-dots{right:7px}}
 .nr-car{width:100%;background:var(--grey-fill);border-radius:8px;padding:56px 0;overflow:hidden}
 .nr-car-stage{position:relative;width:100%;aspect-ratio:2.4/1;perspective:1200px}
 .nr-car-ring{position:absolute;inset:0;transform-style:preserve-3d;transition:transform 2000ms cubic-bezier(.45,0,.55,1)}
@@ -591,7 +611,11 @@ body.c-lnk .cur-blob{width:36px;height:36px;margin:-18px 0 0 -18px;background:rg
 
 <div id="as-challenges" class="cs-sec cs-sec-id" style="display:flex;flex-direction:column;border:none;padding:88px 36px;gap:32px"><div style="display:flex;flex-direction:column;align-items:flex-start;padding:0 52px 0 calc(50% - 36px);gap:8px"><div class="cs-sec-ttl">Key challenges</div><p class="cs-body">Energy simulations involve dozens of parameters — users had to configure everything at once, leading to input errors and abandonment. Designed a step-by-step "Run simulation" flow that guides users through inputs without overwhelming them, then surfaces results as clear, actionable charts.</p><p class="cs-body">Operators needed to create, customize, download, and share reports with stakeholders who don't have platform access. Built a create-to-share pipeline within the product — generate, customise, export, and send reports without leaving Astoria.</p><p class="cs-body">From technical operators to executives, each role needs different first steps. Generic onboarding left most users lost. Adaptive onboarding that detects each role and guides them toward their primary workflow — monitoring, simulations, or reports.</p><p class="cs-body">Energy systems require strict access control. Existing solutions added security at the cost of daily usability. Integrated 2FA and role-based permissions into the auth flow without adding friction to everyday tasks.</p></div></div>
 
-<div id="as-ui" class="cs-sec cs-sec-id" style="padding:88px 36px"><div class="cs-sec-ttl" style="margin-bottom:24px">User interface</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden"><div style="padding:20px;border-right:1px solid var(--border)"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--label);margin-bottom:6px">Monitor</div><p class="cs-body">Portfolio dashboard and individual plant deep-dives with live performance data.</p></div><div style="padding:20px;border-right:1px solid var(--border)"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--label);margin-bottom:6px">Predict</div><p class="cs-body">Simulations engine with configurable scenarios for energy output forecasting.</p></div><div style="padding:20px"><div style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--label);margin-bottom:6px">Report</div><p class="cs-body">Automated report creation with download and sharing to external stakeholders.</p></div></div><p class="cs-body" style="margin-top:16px">Clean data visualizations with the purple accent palette signal a modern energy-tech brand. Full auth system with sign up, sign in, password reset, and 2FA.</p></div>
+<div class="cs-hero" style="padding:64px;aspect-ratio:16/10;"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/v1791368903/Process_astoria_e6matn.png" alt="Astoria Design Process" style="max-width:85%;max-height:85%;width:auto;height:auto;object-fit:contain;display:block;border-radius:4px;box-shadow:0 0 6px rgba(58,58,58,0.25),0 0 0 8px var(--grey-fill),0 0 0 9px var(--frame);outline:none"></div>
+
+<div id="as-ui" class="cs-sec cs-sec-id" style="display:flex;flex-direction:column;border:none;padding:88px 36px;gap:32px"><div style="display:flex;flex-direction:column;align-items:flex-start;padding:0 52px 0 calc(50% - 36px);gap:8px"><div class="cs-sec-ttl">User interface</div><p class="cs-body">Real-time portfolio overview with drill-down into individual plant performance — energy output, uptime, alerts, and maintenance status at a glance.</p><p class="cs-body">Run energy simulations with adjustable parameters — weather, panel degradation, seasonal shifts — to forecast output and plan capacity ahead of time.</p><p class="cs-body">Generate, customise, and export performance reports in one flow — then share directly with stakeholders who don't have platform access.</p><p class="cs-body">Minimal, data-forward UI built around a purple accent palette — clean charts, clear hierarchy, and a complete auth layer with sign-up, sign-in, password reset, and two-factor authentication.</p></div></div>
+
+<div class="ui-stack"><div class="ui-dots"><button class="ui-dot on" aria-label="Show dashboard"></button><button class="ui-dot" aria-label="Show simulations"></button><button class="ui-dot" aria-label="Show reports"></button></div><div class="ui-cursor" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M4 2l16 9-7 2-3 7z" fill="var(--meta)" stroke="var(--grey-fill)" stroke-width="1.5" stroke-linejoin="round"/></svg></div><div class="ui-frame ui-active"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/v1790596048/Dashboard_astoria_wjf3w1.png" alt="Astoria Dashboard"></div><div class="ui-frame"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/v1791371164/Simulations_astoria_sql5a2.png" alt="Astoria Simulations"></div><div class="ui-frame"><img src="https://res.cloudinary.com/dawzgxp2s/image/upload/v1791371167/Filled_astoria_pm73be.png" alt="Astoria Filled Report"></div></div>
 
 <div id="as-results" class="cs-sec cs-sec-id" style="padding:88px 36px"><div class="cs-sec-ttl" style="margin-bottom:24px">Results</div><div class="cs-impact"><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">Screens designed</div></div><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">Report creation time</div></div><div class="cs-ic"><span class="cs-in">—</span><div class="cs-il">Plants onboarded</div></div></div></div>
 
@@ -634,6 +658,52 @@ function show(id){ALL.forEach(v=>{const e=document.getElementById('v-'+v);if(e)e
 function showCs(id){show(id)}
 // restore view on load
 (function(){const hash=location.hash.replace('#','');if(hash&&ALL.includes(hash))show(hash);})();
+(function(){
+  const stack=document.querySelector('.ui-stack');if(!stack)return;
+  const frames=Array.from(stack.querySelectorAll('.ui-frame'));
+  const dots=Array.from(stack.querySelectorAll('.ui-dot'));
+  const cur=stack.querySelector('.ui-cursor');
+  let lock=false,touched=false,visible=false,running=false,timers=[];
+  function setActive(i){frames.forEach((f,j)=>f.classList.toggle('ui-active',j===i));dots.forEach((d,j)=>d.classList.toggle('on',j===i))}
+  function lockFor(ms){lock=true;setTimeout(()=>{lock=false},ms)}
+  function stop(){touched=true;timers.forEach(clearTimeout);cur.classList.remove('show','click')}
+  stack.addEventListener('mousemove',e=>{
+    if(e.movementX||e.movementY)stop();
+    if(lock)return;
+    const f=e.target.closest('.ui-frame');
+    if(!f)return;
+    const i=frames.indexOf(f);
+    if(f.classList.contains('ui-active'))return;
+    setActive(i);lockFor(550);
+  });
+  stack.addEventListener('click',e=>{
+    const f=e.target.closest('.ui-frame');
+    if(f){stop();setActive(frames.indexOf(f))}
+  });
+  stack.addEventListener('touchstart',stop,{passive:true});
+  dots.forEach((d,i)=>d.addEventListener('click',()=>{stop();setActive(i);lockFor(550)}));
+  function pos(i){const s=stack.getBoundingClientRect(),r=frames[i].getBoundingClientRect();return[r.left-s.left+r.width*.55,r.top-s.top+r.height*.5]}
+  function go(i){const p=pos(i);cur.style.transform='translate('+p[0]+'px,'+p[1]+'px)'}
+  const seq=[1,2,0];let k=0;
+  function step(){
+    if(touched||!visible){running=false;return}
+    const i=seq[k++%seq.length];
+    go(i);
+    timers.push(setTimeout(()=>{
+      cur.classList.add('click');setActive(i);
+      timers.push(setTimeout(()=>{cur.classList.remove('click');go(i)},650));
+      timers.push(setTimeout(step,2400));
+    },900));
+  }
+  function start(){
+    if(running||touched)return;
+    running=true;go(0);cur.classList.add('show');
+    timers.push(setTimeout(step,1200));
+  }
+  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&'IntersectionObserver' in window){
+    new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible)start()},{threshold:.3}).observe(stack);
+  }
+})();
 let dark=false;
 function getCenter(el){const r=el.getBoundingClientRect();return{x:r.left+r.width/2,y:r.top+r.height/2}}
 function animateStars(trackId,goingDark){const COUNT=5,DOT_DURATION=400,STAGGER=80;const sunId=trackId==='togTrack'?'tLight':'mLight';const moonId=trackId==='togTrack'?'tDark':'mDark';const fromEl=document.getElementById(goingDark?sunId:moonId);const toEl=document.getElementById(goingDark?moonId:sunId);if(!fromEl||!toEl)return;const from=getCenter(fromEl);const to=getCenter(toEl);for(let i=0;i<COUNT;i++){setTimeout(()=>{const dot=document.createElement('div');dot.className='tog-dot';dot.style.left=from.x+'px';dot.style.top=from.y+'px';dot.style.animation=`dot-fade ${DOT_DURATION}ms ease forwards`;document.body.appendChild(dot);const start=performance.now();function frame(now){const t=Math.min((now-start)/DOT_DURATION,1);const ease=t<0.5?2*t*t:-1+(4-2*t)*t;const x=from.x+(to.x-from.x)*ease;const y=from.y+(to.y-from.y)*ease;dot.style.left=x+'px';dot.style.top=y+'px';if(t<1)requestAnimationFrame(frame);else dot.remove()}requestAnimationFrame(frame)},i*STAGGER)}setTimeout(()=>{toEl.classList.add('tog-glow');setTimeout(()=>toEl.classList.remove('tog-glow'),700)},DOT_DURATION*0.3)}
